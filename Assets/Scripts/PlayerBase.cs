@@ -7,7 +7,7 @@ public class PlayerBase : UnitBase {
 	#region "Class Vars"
 
 	// transformation vars
-	enum Shapeshift {
+	public enum Shapeshift {
 		Human = 1,
 		Bear = 2,
 		Stag = 3
