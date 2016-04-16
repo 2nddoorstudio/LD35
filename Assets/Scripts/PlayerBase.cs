@@ -13,13 +13,13 @@ public class PlayerBase : UnitBase {
 		Stag = 3
 	}
 
-	public int i_currentShape;
+	public Shapeshift en_currentShape;
 
 	#endregion
 
 	// Use this for initialization
 	void Start () {
-		i_currentShape = Shapeshift.Human
+		en_currentShape = Shapeshift.Human;
 	}
 	
 	// Update is called once per frame
