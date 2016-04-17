@@ -19,6 +19,7 @@ public class UnitBase : EntityBase {
 	public float f_attackTimestamp;		// timestamp for the next valid time after cooldown is elapsed
 	public GameObject obj_attackTarget;			// pointer of targeted unit
 
+
 	#endregion
 
 	#region "Func: Constructor & Engine"
