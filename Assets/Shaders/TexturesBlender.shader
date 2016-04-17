@@ -165,5 +165,5 @@ Shader "Shader Forge/TexturesBlender" {
         }
     }
     FallBack "Diffuse"
-    CustomEditor "ShaderForgeMaterialInspector"
+    //CustomEditor "ShaderForgeMaterialInspector"
 }

@@ -75,14 +75,14 @@ public class PlayerBase : UnitBase {
 
 		float angle = Mathf.Atan2(v1.y - v2.y, v1.x - v2.x) * Mathf.Rad2Deg;
 
-		transform.rotation = Quaternion.Euler (new Vector3(0f, -angle, 0f));
+		transform.rotation = Quaternion.Euler (new Vector3(0f, -(angle + 90f), 0f));
 
 		if (Input.GetButton("Fire1"))
 		{
 			newPosition = hit.point;
 
 			//MoveTo(newPosition);
-			transform.Translate(Vector3.left * movementSpeed);
+			transform.Translate(Vector3.forward * movementSpeed);
 		}
 
 
@@ -90,6 +90,11 @@ public class PlayerBase : UnitBase {
 
 	void InitTransform(Shapeshift shape)
 	{
+		if (isTransforming)
+			return;
+
+		isTransforming = true;
+
 		switch (shape) 
 		{
 		case Shapeshift.Human:
@@ -147,6 +152,8 @@ public class PlayerBase : UnitBase {
 		default:
 			break;
 		}
+
+		isTransforming = false;
 	}
 
 	void UpdateTransform()
