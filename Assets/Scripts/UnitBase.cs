@@ -16,7 +16,7 @@ public class UnitBase : EntityBase {
 	public float f_attackDamage;		// health damage incurred by attack
 	public float f_attackCooldown;		// cooldown between attacks
 	public float f_attackRange;			// range within attacks are valid
-	public float f_attackTimestamp;		// timestamp for the next valid time after cooldown is elapsed
+	private float f_attackTimestamp;		// timestamp for the next valid time after cooldown is elapsed
 	public GameObject obj_attackTarget;			// pointer of targeted unit
 
 
@@ -25,7 +25,9 @@ public class UnitBase : EntityBase {
 	#region "Func: Constructor & Engine"
 
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
+
+		base.Start ();
 
 		// default config for class vars
 		v3_moveToLocation = transform.position;
@@ -37,6 +39,10 @@ public class UnitBase : EntityBase {
 		f_attackRange = 100F;
 		f_attackTimestamp = Time.time;
 
+	}
+
+	public override void Update() {
+		base.Update ();
 	}
 	
 	// Update is called once per frame
@@ -55,6 +61,9 @@ public class UnitBase : EntityBase {
 			}
 
 		}
+
+		// Placeholder for overridable AI instructions
+		Event_AIUpdate();
 	}
 
 	#endregion
@@ -123,6 +132,14 @@ public class UnitBase : EntityBase {
 
 			}
 		}
+	}
+
+	#endregion
+
+	#region "Func: AI"
+
+	public virtual void Event_AIUpdate() {
+		return;
 	}
 
 	#endregion

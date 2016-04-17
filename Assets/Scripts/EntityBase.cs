@@ -19,7 +19,7 @@ public class EntityBase : MonoBehaviour {
 	#region "Func: Constructor & Engine"
 
 	// Use this for initialization
-	void Start () {
+	public virtual void Start () {
 	
 		f_maxHealth = 100F;
 		f_currentHealth = f_maxHealth;
@@ -36,7 +36,7 @@ public class EntityBase : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public virtual void Update () {
 	
 		if (b_paused != true) {
 
