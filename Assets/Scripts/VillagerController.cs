@@ -48,8 +48,9 @@ public class VillagerController : UnitBase {
 			break;
 		case Shapeshift.Stag:
 			Debug.Log("Start Follow");
-			target = player.gameObject;
-			StartCoroutine(FollowCoroutine());
+			//target = player.gameObject;
+			StopAllCoroutines();
+			StartCoroutine(FollowCoroutine(player));
 			break;
 		case Shapeshift.Bear:
 			break;
@@ -60,13 +61,7 @@ public class VillagerController : UnitBase {
 
 	IEnumerator StandCoroutine()
 	{
-		float startingTime = Time.time;
-		float timeToStand = Random.Range(2.0f, 4.0f);
-
-		while (Time.time < startingTime + timeToStand)
-		{
-			yield return null;
-		}
+		yield return new WaitForSeconds(Random.Range(2.0f, 4.0f));
 
 		StartCoroutine(WanderCoroutine());
 	}
@@ -86,18 +81,16 @@ public class VillagerController : UnitBase {
 		StartCoroutine(StandCoroutine());
 	}
 
-	IEnumerator FollowCoroutine()
+	IEnumerator FollowCoroutine(PlayerBase player)
 	{
-		StopAllCoroutines();
+		float distance = Vector3.Distance(transform.position, player.transform.position);
 
-		float distance = Vector3.Distance(transform.position, target.transform.position);
-
-		while (distance > 3.0f && distance < 10.0f)
+		while (distance > 1.0f && distance < 20.0f)//(true)//
 		{
-			transform.rotation = Quaternion.LookRotation(target.transform.position, Vector3.up);
+			transform.rotation = Quaternion.LookRotation(player.transform.position, Vector3.up);
 			transform.Translate(Vector3.forward * followSpeed);
 			yield return null;
-			distance = Vector3.Distance(transform.position, target.transform.position);
+			distance = Vector3.Distance(transform.position, player.transform.position);
 		}
 
 		StartCoroutine(WanderCoroutine());
