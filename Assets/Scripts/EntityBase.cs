@@ -12,6 +12,7 @@ public class EntityBase : MonoBehaviour {
 	// engine bookeeping
 	public string s_entityName;
 	public bool b_paused;
+	public GameObject obj_gameManager;
 
 	#endregion
 
@@ -25,6 +26,12 @@ public class EntityBase : MonoBehaviour {
 
 		s_entityName = "DEFAULT_ENTITY";
 		b_paused = false;
+
+		if (obj_gameManager == null) {
+			obj_gameManager = (GameObject)GameObject.Find ("GameManager");
+		}
+
+		obj_gameManager.GetComponent<GameManager> ().Pause += new GameManager.GamePause (GameManager_Pause);
 
 	}
 	
@@ -42,6 +49,16 @@ public class EntityBase : MonoBehaviour {
 			return;
 
 		}
+	}
+
+	void GameManager_Pause(object sender, System.EventArgs e) {
+
+		if (b_paused == true) {
+			b_paused = false;
+		} else {
+			b_paused = true;
+		}
+
 	}
 
 	// Dummy function for subclasses to override, provides actual update function
@@ -72,4 +89,5 @@ public class EntityBase : MonoBehaviour {
 	}
 		
 	#endregion
+
 }
