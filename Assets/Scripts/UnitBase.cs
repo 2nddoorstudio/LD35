@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 // Unit base for classes that can move
@@ -18,6 +19,8 @@ public class UnitBase : EntityBase {
 	public float f_attackRange;			// range within attacks are valid
 	private float f_attackTimestamp;		// timestamp for the next valid time after cooldown is elapsed
 	public GameObject obj_attackTarget;			// pointer of targeted unit
+
+	protected Action currentBehaviour;
 
 
 	#endregion
@@ -43,6 +46,9 @@ public class UnitBase : EntityBase {
 
 	public override void Update() {
 		base.Update ();
+
+		if (currentBehaviour != null)
+			currentBehaviour();
 	}
 	
 	// Update is called once per frame
@@ -132,6 +138,11 @@ public class UnitBase : EntityBase {
 
 			}
 		}
+	}
+
+	public virtual void OnPlayerTrigger(PlayerBase target, Shapeshift shape)
+	{
+		
 	}
 
 	#endregion
