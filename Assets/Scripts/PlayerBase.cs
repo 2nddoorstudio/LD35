@@ -175,4 +175,26 @@ public class PlayerBase : UnitBase {
 	{
 		
 	}
+
+	void OnTriggerStay(Collider other)
+	{
+		UnitBase unit = other.gameObject.GetComponent<UnitBase>();
+		if (unit == null)
+			return;
+			
+		switch (currentShape) 
+		{
+		case Shapeshift.Human:
+
+			break;
+		case Shapeshift.Stag:
+			currentBehaviour = UpdateStag;
+			break;
+		case Shapeshift.Bear:
+			currentBehaviour = UpdateBear;
+			break;
+		default:
+			break;
+		}
+	}
 }
