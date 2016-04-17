@@ -23,12 +23,14 @@ public class PlayerBase : UnitBase {
 	public Shapeshift currentShape;
 
 	[SerializeField]
-	float movementSpeed = 0.2f;
+	float humanMovementSpeed = 0.2f;
+	[SerializeField]
+	float stagMovementSpeed = 0.3f;
+	[SerializeField]
+	float bearMovementSpeed = 0.1f;
 
 	[SerializeField]
 	float transformationDuration = 2.0f;
-
-	Action currentBehaviour;
 
 	float textureSliderA = 0.0f;
 	float textureSliderB = 0.0f;
@@ -42,6 +44,7 @@ public class PlayerBase : UnitBase {
 	// Use this for initialization
 	void Start () {
 		currentShape = Shapeshift.Human;
+		currentBehaviour = UpdateHuman;
 
 		render = GetComponent<Renderer>();
 	}
@@ -49,10 +52,6 @@ public class PlayerBase : UnitBase {
 	// Update is called once per frame
 	void Update () 
 	{
-		Material material = render.material;
-
-		//Debug.Log(material.name);
-
 		if (Input.GetKeyDown(KeyCode.A))
 		{
 			InitTransform(Shapeshift.Human);
@@ -66,25 +65,30 @@ public class PlayerBase : UnitBase {
 			InitTransform(Shapeshift.Bear);
 		}
 
-		Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-		RaycastHit hit;
-		Physics.Raycast(mouseRay, out hit);
 
+		//Rotate to face mouse
 		Vector2 v1 = Camera.main.WorldToViewportPoint(transform.position);
 		Vector2 v2 = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
 
 		float angle = Mathf.Atan2(v1.y - v2.y, v1.x - v2.x) * Mathf.Rad2Deg;
+		transform.rotation = Quaternion.Euler (new Vector3(0f, -(angle - Camera.main.transform.parent.transform.rotation.eulerAngles.y + 90.0f), 0f));
 
-		transform.rotation = Quaternion.Euler (new Vector3(0f, -(angle + 90f), 0f));
+		//base.Update();
+		if (currentBehaviour != null)
+			currentBehaviour();
+
+		/*Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+		RaycastHit hit;
+		Physics.Raycast(mouseRay, out hit);
 
 		if (Input.GetButton("Fire1"))
 		{
-			newPosition = hit.point;
+			//newPosition = hit.point;
 
+			transform.Translate(Vector3.forward * humanMovementSpeed);
 			//MoveTo(newPosition);
-			transform.Translate(Vector3.forward * movementSpeed);
-		}
-
+		}*/
+		//if (Vector3.Distance(transform.position, hit.point) > 1.0f)
 
 	}
 
@@ -163,38 +167,38 @@ public class PlayerBase : UnitBase {
 
 	void UpdateHuman()
 	{
-		
+		if (Input.GetButton("Fire1"))
+		{
+			transform.Translate(Vector3.forward * humanMovementSpeed);
+		}
 	}
 
 	void UpdateStag()
 	{
-		
+		if (Input.GetButton("Fire1"))
+		{
+			transform.Translate(Vector3.forward * stagMovementSpeed);
+		}
 	}
 
 	void UpdateBear()
 	{
-		
+		if (Input.GetButton("Fire1"))
+		{
+			transform.Translate(Vector3.forward * bearMovementSpeed);
+		}
 	}
 
-	void OnTriggerStay(Collider other)
+	void OnTriggerEnter(Collider other)
 	{
 		UnitBase unit = other.gameObject.GetComponent<UnitBase>();
+		Debug.Log(unit);
 		if (unit == null)
 			return;
-			
-		switch (currentShape) 
-		{
-		case Shapeshift.Human:
+		
+		unit.OnPlayerTrigger(this, currentShape);
 
-			break;
-		case Shapeshift.Stag:
-			currentBehaviour = UpdateStag;
-			break;
-		case Shapeshift.Bear:
-			currentBehaviour = UpdateBear;
-			break;
-		default:
-			break;
-		}
+
+
 	}
 }
