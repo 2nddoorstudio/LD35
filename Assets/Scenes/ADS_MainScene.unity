@@ -549,6 +549,7 @@ MonoBehaviour:
   f_maxHealth: 0
   s_entityName: 
   b_paused: 0
+  obj_gameManager: {fileID: 0}
   v3_moveToLocation: {x: 0, y: 0, z: 0}
   f_movementSpeed: 100
   b_isMoving: 0
@@ -556,7 +557,6 @@ MonoBehaviour:
   f_attackDamage: 0
   f_attackCooldown: 0
   f_attackRange: 0
-  f_attackTimestamp: 0
   obj_attackTarget: {fileID: 0}
   currentShape: 0
   movementSpeed: 0.1
@@ -684,7 +684,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1770545846}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.38268346, z: 0, w: 0.9238795}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
