@@ -85,20 +85,20 @@ public class VillagerController : UnitBase {
 	{
 		float distance = Vector3.Distance(transform.position, player.transform.position);
 
-		while (distance > 1.0f && distance < 20.0f)//(true)//
+		while (distance > 1.0f && distance < 15.0f)//(true)//
 		{
-			transform.rotation = Quaternion.LookRotation(player.transform.position, Vector3.up);
+			Vector3 vDirection = player.transform.position - transform.position;
+			float angle = Mathf.Sign(Vector3.Dot(vDirection, Vector3.right)) * Vector3.Angle(vDirection, Vector3.forward);
+			transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
+
 			transform.Translate(Vector3.forward * followSpeed);
+
 			yield return null;
+
 			distance = Vector3.Distance(transform.position, player.transform.position);
 		}
 
-		StartCoroutine(WanderCoroutine());
-	}
-
-	public void UpdateFollow()
-	{
-		
+		StartCoroutine(StandCoroutine());
 	}
 
 	public void UpdateRun()
