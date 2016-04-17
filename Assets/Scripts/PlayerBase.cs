@@ -18,12 +18,15 @@ public class PlayerBase : UnitBase {
 	#endregion
 
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
+
+		base.Start ();
+
 		en_currentShape = Shapeshift.Human;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	public override void Update() {
+		base.Update ();
 	}
 }
