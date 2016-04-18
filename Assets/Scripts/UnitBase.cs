@@ -7,20 +7,38 @@ public class UnitBase : EntityBase {
 
 	#region "Class Vars"
 
+	protected enum BehaviourMode
+	{
+		Wandering,
+		Following,
+		Fleeing,
+		Attacking
+	}
+
+	protected BehaviourMode behaviourMode;
+	protected Action currentBehaviour;
+
+	[SerializeField]
+	protected float MaxHealth = 100.0f;
+	protected float currentHealth;
+	[SerializeField]
+	protected float damageMultiplier = 1.0f;
+
+
+
 	// movement vars
-	public Vector3 v3_moveToLocation;
+	/*public Vector3 v3_moveToLocation;
 	public float f_movementSpeed;
-	public bool b_isMoving;
+	public bool b_isMoving;*/
 
 	// Combat vars
-	public bool b_canAttack;		// can this unit attack?
+	/*public bool b_canAttack;		// can this unit attack?
 	public float f_attackDamage;		// health damage incurred by attack
 	public float f_attackCooldown;		// cooldown between attacks
 	public float f_attackRange;			// range within attacks are valid
 	private float f_attackTimestamp;		// timestamp for the next valid time after cooldown is elapsed
-	public GameObject obj_attackTarget;			// pointer of targeted unit
+	public GameObject obj_attackTarget;			// pointer of targeted unit*/
 
-	protected Action currentBehaviour;
 
 
 	#endregion
@@ -32,15 +50,16 @@ public class UnitBase : EntityBase {
 
 		base.Start ();
 
+		behaviourMode = BehaviourMode.Wandering;
 		// default config for class vars
-		v3_moveToLocation = transform.position;
-		b_isMoving = false;
+		//v3_moveToLocation = transform.position;
+		//b_isMoving = false;
 
-		b_canAttack = false;
+		/*b_canAttack = false;
 		f_attackDamage = 10F;
 		f_attackCooldown = 1F;
 		f_attackRange = 100F;
-		f_attackTimestamp = Time.time;
+		f_attackTimestamp = Time.time;*/
 
 	}
 
@@ -56,48 +75,62 @@ public class UnitBase : EntityBase {
 
 		// Do all applicable event checks
 		// Move unit if needed
-		Event_MoveUnit ();
+		//Event_MoveUnit ();
 
 		// Attack with unit if needed
-		if (b_canAttack == true) {
+		/*if (b_canAttack == true) {
 
 			// if we have a valid target, attempt to attack
 			if (obj_attackTarget != null) {
 				Event_AttackUnit ();
 			}
 
-		}
+		}*/
 
 		// Placeholder for overridable AI instructions
 		Event_AIUpdate();
+	}
+
+
+	public float GetNormalizedHealth()
+	{
+		return (Mathf.InverseLerp(0.0f, MaxHealth, currentHealth));
 	}
 
 	#endregion
 
 	#region "Func: Movement"
 
-	// internal event to move unit to the designated coordinate; used for update
-	private void Event_MoveUnit() {
-
-		// check if moving is necessary
-		if (transform.position != v3_moveToLocation) {
-			transform.position = Vector3.Lerp (transform.position, v3_moveToLocation, f_movementSpeed * Time.deltaTime);
-		} else {
-			b_isMoving = false;
-		}
-
+	protected void MoveForward(float speed)
+	{
+		if (b_paused)
+			return;
+		
+		transform.Translate(Vector3.forward * speed);
 	}
 
-	// Set location to move to (for external use)
-	public void MoveTo(Vector3 newLocation) {
-		v3_moveToLocation = newLocation;
-		b_isMoving = true;
+	protected void RotateToward(Vector3 target)
+	{
+		if (b_paused)
+			return;
+
+		Vector3 vDirection = target - transform.position;
+		float angle = Mathf.Sign(Vector3.Dot(vDirection, Vector3.right)) * Vector3.Angle(vDirection, Vector3.forward);
+		transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
+	}
+
+	protected void RotateAngle(float angle)
+	{
+		if (b_paused)
+			return;
+
+		transform.RotateAround(transform.position, Vector3.up, angle);
 	}
 
 	#endregion
 
 	#region "Func: Combat"
-
+/*
 	// Set target for attacks
 	public void SetTarget(GameObject newTarget) {
 
@@ -139,7 +172,7 @@ public class UnitBase : EntityBase {
 			}
 		}
 	}
-
+*/
 	public virtual void OnPlayerTrigger(PlayerBase target, Shapeshift shape)
 	{
 		

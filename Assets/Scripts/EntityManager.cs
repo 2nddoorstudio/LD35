@@ -76,11 +76,12 @@ public class EntityManager : MonoBehaviour {
 	Vector3 GetRandomPosition(float height)
 	{
 		Vector3 newPos;
+		Vector3 exclusionCenter = Vector3.zero;
 		do
 		{
 			newPos = new Vector3(Random.Range(widthMin, widthMax), height, Random.Range(heightMin, heightMax));
 		}
-		while (newPos.x < excludeZone && newPos.x > -excludeZone && newPos.y < excludeZone && newPos.y > -excludeZone);
+		while (Vector3.Distance(newPos, exclusionCenter) < excludeZone);
 		
 		return newPos;
 	}

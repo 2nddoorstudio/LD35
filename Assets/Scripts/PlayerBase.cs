@@ -17,12 +17,9 @@ public class PlayerBase : UnitBase {
 	[SerializeField]
 	Renderer render;
 
-	float MaxHealth = 100.0f;
-	float currentHealt;
 	float humanDamage = 0.35f;
 	float stagDamage = 0.5f;
 	float bearDamage = 0.2f;
-	float damageMultiplier;
 
 	bool isTransforming = false;
 
@@ -51,18 +48,25 @@ public class PlayerBase : UnitBase {
 
 	// Use this for initialization
 	void Start () {
-		currentHealt = MaxHealth;
+		currentHealth = MaxHealth;
 		damageMultiplier = humanDamage;
 		currentShape = Shapeshift.Human;
 		currentBehaviour = UpdateHuman;
 
-		//render = GetComponent<Renderer>();
 		rBody = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	public override void Update () 
 	{
+		base.Update();
+
+	}
+
+	public override void UpdateLogic ()
+	{
+		base.UpdateLogic ();
+
 		if (Input.GetKeyDown(KeyCode.A))
 		{
 			InitTransform(Shapeshift.Human);
@@ -85,8 +89,8 @@ public class PlayerBase : UnitBase {
 		transform.rotation = Quaternion.Euler (new Vector3(0f, -(angle - Camera.main.transform.parent.transform.rotation.eulerAngles.y + 90.0f), 0f));
 
 		//base.Update();
-		if (currentBehaviour != null)
-			currentBehaviour();
+		//if (currentBehaviour != null)
+		//	currentBehaviour();
 
 		/*Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
@@ -101,10 +105,6 @@ public class PlayerBase : UnitBase {
 		}*/
 		//if (Vector3.Distance(transform.position, hit.point) > 1.0f)
 
-	}
-	void SetHuman()
-	{
-		
 	}
 
 	void InitTransform(Shapeshift shape)
@@ -137,6 +137,7 @@ public class PlayerBase : UnitBase {
 		StartCoroutine(Transformation());
 	}
 
+	//TODO: change transformation-- maybe one for each transition
 	IEnumerator Transformation()
 	{
 		float startTime = Time.time;
@@ -184,8 +185,7 @@ public class PlayerBase : UnitBase {
 	{
 		if (Input.GetButton("Fire1"))
 		{
-			//rBody.AddForce(transform.forward * 10f, ForceMode.Acceleration);
-			transform.Translate(Vector3.forward * humanMovementSpeed);
+			MoveForward(humanMovementSpeed);
 		}
 	}
 
@@ -193,7 +193,7 @@ public class PlayerBase : UnitBase {
 	{
 		if (Input.GetButton("Fire1"))
 		{
-			transform.Translate(Vector3.forward * stagMovementSpeed);
+			MoveForward(stagMovementSpeed);
 		}
 	}
 
@@ -201,7 +201,7 @@ public class PlayerBase : UnitBase {
 	{
 		if (Input.GetButton("Fire1"))
 		{
-			transform.Translate(Vector3.forward * bearMovementSpeed);
+			MoveForward(bearMovementSpeed);
 		}
 	}
 
@@ -209,13 +209,10 @@ public class PlayerBase : UnitBase {
 	{
 		UnitBase unit = other.gameObject.GetComponent<UnitBase>();
 
-		//Debug.Log(unit);
 		if (unit == null)
 			return;
 		
 		unit.OnPlayerTrigger(this, currentShape);
-
-
 
 	}
 }

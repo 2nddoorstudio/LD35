@@ -1,25 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class VillagerController : UnitBase {
 
-	enum Mode
-	{
-		Wander,
-		Follow,
-		Flee
-	}
-
-	Mode currentMode;
-
-	GameObject target;
 
 	[SerializeField]
 	float wanderSpeed = 0.05f;
 	[SerializeField]
-	float runSpeed = 1.2f;
+	float runSpeed = 0.15f;
 	[SerializeField]
-	float followSpeed = 1.0f;
+	float followSpeed = 0.1f;
+
 	[SerializeField]
 	float chanceToWander = 0.1f;
 	[SerializeField]
@@ -38,7 +30,7 @@ public class VillagerController : UnitBase {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		base.Update();
 	}
 
 	public override void OnPlayerTrigger (PlayerBase player, Shapeshift shape)
@@ -46,7 +38,7 @@ public class VillagerController : UnitBase {
 		
 		base.OnPlayerTrigger (player, shape);
 
-		if (currentMode == Mode.Wander || shape != previousShape)
+		if (behaviourMode == BehaviourMode.Wandering || shape != previousShape)
 		{
 			switch (shape) 
 			{
@@ -57,7 +49,6 @@ public class VillagerController : UnitBase {
 				break;
 			case Shapeshift.Stag:
 				if (inSanctuary) break;
-				//target = player.gameObject;
 				StopAllCoroutines();
 				StartCoroutine(FollowCoroutine(player));
 				break;
@@ -76,8 +67,6 @@ public class VillagerController : UnitBase {
 
 	public override void OnSanctuaryTrigger(bool safe, GameObject go)
 	{
-		//Debug.Log(safe);
-
 		if (safe != inSanctuary && safe)
 		{
 			StopAllCoroutines();
@@ -93,7 +82,7 @@ public class VillagerController : UnitBase {
 
 	IEnumerator StandCoroutine()
 	{
-		currentMode = Mode.Wander;
+		behaviourMode = BehaviourMode.Wandering;
 
 		yield return new WaitForSeconds(Random.Range(2.0f, 4.0f));
 
@@ -102,16 +91,16 @@ public class VillagerController : UnitBase {
 
 	IEnumerator WanderCoroutine()
 	{
-		currentMode = Mode.Wander;
+		behaviourMode = BehaviourMode.Wandering;
 
 		float startingTime = Time.time;
 		float timeToWonder = Random.Range(1.0f, 3.0f);
 
-		transform.RotateAround(transform.position, Vector3.up, Random.Range(0.0f, 360.0f));
+		RotateAngle(Random.Range(0.0f, 360.0f));
 
 		while (Time.time < startingTime + timeToWonder)
 		{
-			transform.Translate(Vector3.forward * wanderSpeed);
+			MoveForward(wanderSpeed);
 			yield return null;
 		}
 		StartCoroutine(StandCoroutine());
@@ -119,18 +108,16 @@ public class VillagerController : UnitBase {
 
 	IEnumerator ShelterCoroutine(Vector3 target)
 	{
-		currentMode = Mode.Wander;
+		behaviourMode = BehaviourMode.Wandering;
 
 		float startingTime = Time.time;
 		float timeToWonder = startingTime + Random.Range(3.0f, 5.0f);
 
-		Vector3 vDirection = target - transform.position;
-		float angle = Mathf.Sign(Vector3.Dot(vDirection, Vector3.right)) * Vector3.Angle(vDirection, Vector3.forward);
-		transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
+		RotateToward(target);
 
 		while (Time.time < timeToWonder)
 		{
-			transform.Translate(Vector3.forward * followSpeed);
+			MoveForward(followSpeed);
 			yield return null;
 		}
 		StartCoroutine(StandCoroutine());
@@ -138,17 +125,15 @@ public class VillagerController : UnitBase {
 
 	IEnumerator FollowCoroutine(PlayerBase player)
 	{
-		currentMode = Mode.Follow;
+		behaviourMode = BehaviourMode.Following;
 
 		float distance = Vector3.Distance(transform.position, player.transform.position);
 
-		while (distance > 3.0f && distance < 15.0f)//(true)//
+		while (distance > 3.0f && distance < 15.0f)
 		{
-			Vector3 vDirection = player.transform.position - transform.position;
-			float angle = Mathf.Sign(Vector3.Dot(vDirection, Vector3.right)) * Vector3.Angle(vDirection, Vector3.forward);
-			transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
+			RotateToward(player.transform.position);
 
-			transform.Translate(Vector3.forward * followSpeed);
+			MoveForward(followSpeed);
 
 			yield return null;
 
@@ -160,26 +145,19 @@ public class VillagerController : UnitBase {
 
 	IEnumerator FleeCoroutine(GameObject target)
 	{
-		currentMode = Mode.Flee;
+		behaviourMode = BehaviourMode.Fleeing;
 
 		float startingTime = Time.time;
 		float timeToFlee = startingTime + Random.Range(1.0f, 3.0f);
 
-		float distance = Vector3.Distance(transform.position, target.transform.position);
+		RotateToward(target.transform.position);
+		RotateAngle(180.0f);
 
-		Vector3 vDirection = target.transform.position - transform.position;
-		float angle = Mathf.Sign(Vector3.Dot(vDirection, Vector3.right)) * Vector3.Angle(vDirection, Vector3.back);
-		transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
-
-
-
-		while (Time.time < timeToFlee)//(true)//
+		while (Time.time < timeToFlee)
 		{
-			transform.Translate(Vector3.forward * runSpeed);
+			MoveForward(runSpeed);
 
 			yield return null;
-
-			//distance = Vector3.Distance(transform.position, player.transform.position);
 		}
 
 		StartCoroutine(StandCoroutine());

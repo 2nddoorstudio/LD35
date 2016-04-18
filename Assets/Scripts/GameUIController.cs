@@ -3,7 +3,11 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class GameUIController : MonoBehaviour {
+	[SerializeField]
 	private GameObject GameUI;
+	[SerializeField]
+	PlayerBase player;
+
 	public float currentHealth = 1f;
 	public SpriteRenderer HealthUI;
 	public GameObject CircleHuman;
@@ -17,11 +21,12 @@ public class GameUIController : MonoBehaviour {
 	CanvasRotation canvasRotation;
 
 	// Use this for initialization
-	void Start () {
-		GameUI = GameObject.FindGameObjectWithTag("InGameUI");
+	void Start () 
+	{
+		//GameUI = GameObject.FindGameObjectWithTag("InGameUI");
 		canvasRotation = GetComponent<CanvasRotation>();
 		HumanLight.intensity = 0.75f;
-		}
+	}
 
 	// Update is called once per frame
 	void Update () {
