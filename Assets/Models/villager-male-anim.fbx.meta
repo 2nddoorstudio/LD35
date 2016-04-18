@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 24868f5c928ac4a3ab31ac7be55e33c3
-timeCreated: 1460995901
+timeCreated: 1460998237
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -809,14 +809,40 @@ ModelImporter:
     resampleRotations: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    animationImportErrors: '
-
-      Imported file ''villager-male-anim'' conversion failed: Required human bone
-      ''Head'' not found
-
-
-'
-    animationImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: "\nClip 'rig|Human-Idle' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'ORG-hand.L' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'ORG-hand.R' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'rig|Human-Run' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'ORG-hips'
+      has translation animation that will be discarded.\n\t'ORG-hips' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'ORG-hand.L'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'ORG-hand.R'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'ORG-thigh.L'
+      has scale animation that will be discarded.\n\t'ORG-foot.L' has scale animation
+      that will be discarded.\n\t'ORG-toe.L' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'ORG-toe.R' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n\nClip 'rig|Human-Shoot'
+      has import animation warnings that might lower retargeting quality:\nNote: Activate
+      translation DOF on avatar to improve retargeting quality.\n\t'ORG-hips' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'ORG-upper_arm.L'
+      has scale animation that will be discarded.\n\t'ORG-hand.L' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n\t'ORG-hand.L'
+      has scale animation that will be discarded.\n\t'ORG-hand.R' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n\nClip 'rig|Human-Walk'
+      has import animation warnings that might lower retargeting quality:\nNote: Activate
+      translation DOF on avatar to improve retargeting quality.\n\t'ORG-hips' has
+      translation animation that will be discarded.\n\t'ORG-hips' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n\t'ORG-hand.L'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'ORG-hand.R'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'ORG-thigh.L'
+      has scale animation that will be discarded.\n\t'ORG-foot.L' has scale animation
+      that will be discarded.\n\t'ORG-toe.L' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'ORG-thigh.R' has scale animation
+      that will be discarded.\n\t'ORG-toe.R' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 3
@@ -5076,6 +5102,14 @@ ModelImporter:
         modified: 0
     - boneName: DEF-toe.R
       humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: DEF-neck_end
+      humanName: Head
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
