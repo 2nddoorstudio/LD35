@@ -14,9 +14,15 @@ public class PlayerBase : UnitBase {
 
 	#region "Class Vars"
 
+	[SerializeField]
 	Renderer render;
 
-	// transformation vars
+	float MaxHealth = 100.0f;
+	float currentHealt;
+	float humanDamage = 0.35f;
+	float stagDamage = 0.5f;
+	float bearDamage = 0.2f;
+	float damageMultiplier;
 
 	bool isTransforming = false;
 
@@ -39,14 +45,19 @@ public class PlayerBase : UnitBase {
 
 	Vector3 newPosition = Vector3.zero;
 
+	Rigidbody rBody;
+
 	#endregion
 
 	// Use this for initialization
 	void Start () {
+		currentHealt = MaxHealth;
+		damageMultiplier = humanDamage;
 		currentShape = Shapeshift.Human;
 		currentBehaviour = UpdateHuman;
 
-		render = GetComponent<Renderer>();
+		//render = GetComponent<Renderer>();
+		rBody = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
@@ -90,6 +101,10 @@ public class PlayerBase : UnitBase {
 		}*/
 		//if (Vector3.Distance(transform.position, hit.point) > 1.0f)
 
+	}
+	void SetHuman()
+	{
+		
 	}
 
 	void InitTransform(Shapeshift shape)
@@ -169,6 +184,7 @@ public class PlayerBase : UnitBase {
 	{
 		if (Input.GetButton("Fire1"))
 		{
+			//rBody.AddForce(transform.forward * 10f, ForceMode.Acceleration);
 			transform.Translate(Vector3.forward * humanMovementSpeed);
 		}
 	}
@@ -189,10 +205,11 @@ public class PlayerBase : UnitBase {
 		}
 	}
 
-	void OnTriggerEnter(Collider other)
+	void OnTriggerStay(Collider other)
 	{
 		UnitBase unit = other.gameObject.GetComponent<UnitBase>();
-		Debug.Log(unit);
+
+		//Debug.Log(unit);
 		if (unit == null)
 			return;
 		

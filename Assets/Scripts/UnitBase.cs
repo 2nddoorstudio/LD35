@@ -145,6 +145,13 @@ public class UnitBase : EntityBase {
 		
 	}
 
+
+	public virtual void OnSanctuaryTrigger(bool safe, GameObject go)
+	{
+
+	}
+
+
 	#endregion
 
 	#region "Func: AI"
