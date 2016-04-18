@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: TexturesBlender
-  m_Shader: {fileID: 4800000, guid: 5b71d8dc0aec66e4099bc5437de9cdc0, type: 3}
+  m_Name: Player
+  m_Shader: {fileID: 4800000, guid: 548be5f1a3c21ab488f0aedcd42a4300, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: 2000
@@ -90,6 +90,20 @@ Material:
           name: _Texture3
         second:
           m_Texture: {fileID: 2800000, guid: 70ea29491fee04c4396f492e8c6eaf96, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _EmissionMap2
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _EmissionMap3
+        second:
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
