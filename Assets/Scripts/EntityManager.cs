@@ -11,9 +11,13 @@ public class EntityManager : MonoBehaviour {
 	[SerializeField]
 	float excludeZone = 25.0f;
 	[SerializeField]
-	GameObject villagerPrefab;
+	GameObject villagerAPrefab;
 	[SerializeField]
-	int villagerNumber = 40;
+	int villagerANumber = 20;
+	[SerializeField]
+	GameObject villagerBPrefab;
+	[SerializeField]
+	int villagerBNumber = 20;
 	[SerializeField]
 	GameObject enemyPrefab;
 	[SerializeField]
@@ -45,9 +49,17 @@ public class EntityManager : MonoBehaviour {
 		enemies = new List<UnitBase>();
 		terrains = new List<GameObject>();
 
-		for (int i = 0; i < villagerNumber; i++)
+		for (int i = 0; i < villagerANumber; i++)
 		{
-			GameObject go = Instantiate(villagerPrefab);
+			GameObject go = Instantiate(villagerAPrefab);
+			go.transform.position = GetRandomPosition(0.5f);
+			villagers.Add(go.GetComponent<UnitBase>());
+
+		}
+
+		for (int i = 0; i < villagerBNumber; i++)
+		{
+			GameObject go = Instantiate(villagerBPrefab);
 			go.transform.position = GetRandomPosition(0.5f);
 			villagers.Add(go.GetComponent<UnitBase>());
 
@@ -68,7 +80,7 @@ public class EntityManager : MonoBehaviour {
 				go.transform.position = GetRandomPosition(0.0f);
 				terrains.Add(go);
 			}
-			
+
 		}
 
 	}
@@ -82,7 +94,7 @@ public class EntityManager : MonoBehaviour {
 			newPos = new Vector3(Random.Range(widthMin, widthMax), height, Random.Range(heightMin, heightMax));
 		}
 		while (Vector3.Distance(newPos, exclusionCenter) < excludeZone);
-		
+
 		return newPos;
 	}
 
