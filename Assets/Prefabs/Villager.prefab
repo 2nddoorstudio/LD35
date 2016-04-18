@@ -118,8 +118,8 @@ MonoBehaviour:
   f_attackRange: 0
   obj_attackTarget: {fileID: 0}
   wanderSpeed: 0.03
-  runSpeed: 0.1
-  followSpeed: 0.07
+  runSpeed: 0.15
+  followSpeed: 0.1
   chanceToWander: 0.1
   chanceToStopWandering: 0.9
 --- !u!135 &13544928
@@ -140,7 +140,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: followSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: runSpeed
+      value: 0.15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 171200}

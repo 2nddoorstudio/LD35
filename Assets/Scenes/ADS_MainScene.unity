@@ -1151,6 +1151,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   render: {fileID: 1143130484}
+  offsetX: 0.01
+  offsetY: 0.01
+  speedX: 0.9
+  speedY: 0.9
 --- !u!1001 &1148780495
 Prefab:
   m_ObjectHideFlags: 0
@@ -1256,6 +1260,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1207128219}
   - 108: {fileID: 1207128218}
+  - 114: {fileID: 1207128220}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1308,6 +1313,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1207128220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1207128217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bceb19cd93eecb74e9df80b74ff2edd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  render: {fileID: 0}
+  offsetX: 0.01
+  offsetY: 0.01
+  speedX: 0.9
+  speedY: 0.9
 --- !u!1001 &1216563238
 Prefab:
   m_ObjectHideFlags: 0

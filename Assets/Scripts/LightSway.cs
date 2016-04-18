@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TextureScroll : MonoBehaviour {
+public class LightSway : MonoBehaviour {
 
 	[SerializeField]
 	Renderer render;
@@ -15,18 +15,16 @@ public class TextureScroll : MonoBehaviour {
 	[SerializeField]
 	float speedY = 0.9f;
 
-	// Use this for initialization
-	void Start () 
-	{
-		
-	}
-
 	// Update is called once per frame
 	void Update () 
 	{
 		float x = Mathf.Sin(Time.time * speedX) * offsetX;
 		float y = Mathf.Sin(Time.time * speedY) * offsetY;
 
-		render.material.SetTextureOffset("_DetailAlbedoMap", new Vector2(x, y));
+		Vector3 angle = transform.rotation.eulerAngles;
+		angle.x += x;
+		angle.y += y;
+		transform.rotation = Quaternion.Euler(angle);
+
 	}
 }

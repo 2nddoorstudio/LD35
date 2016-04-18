@@ -15,7 +15,7 @@ public class SanctuaryController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		Debug.Log("in");
+		//Debug.Log("in");
 		UnitBase unit = other.gameObject.GetComponent<UnitBase>();
 		if (unit == null)
 			return;
