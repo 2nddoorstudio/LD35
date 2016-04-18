@@ -76,7 +76,7 @@ public class VillagerController : UnitBase {
 
 	public override void OnSanctuaryTrigger(bool safe, GameObject go)
 	{
-		Debug.Log(safe);
+		//Debug.Log(safe);
 
 		if (safe != inSanctuary && safe)
 		{
