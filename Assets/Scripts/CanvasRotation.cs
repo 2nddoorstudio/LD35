@@ -7,7 +7,7 @@ public class CanvasRotation : MonoBehaviour {
 
 	bool isRotating = false;
 
-	float firstAngle = -90f;
+	//float firstAngle = -90f;
 
 	// Use this for initialization
 	void Start () {
@@ -17,20 +17,20 @@ public class CanvasRotation : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		if (Input.GetKeyDown(KeyCode.T))
-		{
-			RotateUI(gameObject, firstAngle, 0.5f);
-
-		}
-
-		if (Input.GetKeyDown(KeyCode.Y))
-		{
-			RotateUI(gameObject, 20f, 0.5f);
-
-		}
+//		if (Input.GetKeyDown(KeyCode.T))
+//		{
+//			RotateUI(gameObject, firstAngle, 0.5f);
+//
+//		}
+//
+//		if (Input.GetKeyDown(KeyCode.Y))
+//		{
+//			RotateUI(gameObject, 20f, 0.5f);
+//
+//		}
 	}
 
-	void RotateUI(GameObject go, float angle, float duration)
+	public void RotateUI(GameObject go, float angle, float duration)
 	{
 		if (isRotating )
 		{
