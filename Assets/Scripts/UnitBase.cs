@@ -24,11 +24,11 @@ public class UnitBase : EntityBase {
 	[SerializeField]
 	protected float damageMultiplier = 1.0f;
 
+	protected float movementSpeed;
 
 
 	// movement vars
 	/*public Vector3 v3_moveToLocation;
-	public float f_movementSpeed;
 	public bool b_isMoving;*/
 
 	// Combat vars
@@ -107,6 +107,10 @@ public class UnitBase : EntityBase {
 			return;
 		
 		transform.Translate(Vector3.forward * speed);
+	}
+	protected void MoveForward()
+	{
+		MoveForward(movementSpeed);
 	}
 
 	protected void RotateToward(Vector3 target)
