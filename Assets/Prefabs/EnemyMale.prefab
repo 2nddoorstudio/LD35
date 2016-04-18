@@ -1485,22 +1485,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &122016
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 497994}
-  - 137: {fileID: 13761432}
-  m_Layer: 0
-  m_Name: Villager-Female
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &122084
 GameObject:
   m_ObjectHideFlags: 1
@@ -2611,6 +2595,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &142800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 445396}
+  - 137: {fileID: 13763704}
+  m_Layer: 0
+  m_Name: Villager-Male
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &143120
 GameObject:
   m_ObjectHideFlags: 1
@@ -2665,10 +2665,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 465630}
   - 95: {fileID: 9531662}
-  - 114: {fileID: 11412868}
   - 54: {fileID: 5414704}
-  - 65: {fileID: 6596160}
   - 135: {fileID: 13546980}
+  - 65: {fileID: 6596160}
+  - 114: {fileID: 11412868}
   m_Layer: 0
   m_Name: EnemyMale
   m_TagString: Untagged
@@ -8312,6 +8312,18 @@ Transform:
   - {fileID: 413138}
   m_Father: {fileID: 401714}
   m_RootOrder: 0
+--- !u!4 &445396
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 142800}
+  m_LocalRotation: {x: 0.00000008146034, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.2003942, z: 0.08758117}
+  m_LocalScale: {x: 7.9693317, y: 7.9693317, z: 7.9693317}
+  m_Children: []
+  m_Father: {fileID: 465630}
+  m_RootOrder: 1
 --- !u!4 &445482
 Transform:
   m_ObjectHideFlags: 1
@@ -9305,12 +9317,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 144728}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.99983233, z: 0, w: -0.018313656}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 490440}
-  - {fileID: 497994}
+  - {fileID: 445396}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &465922
@@ -10947,18 +10959,6 @@ Transform:
   - {fileID: 421698}
   m_Father: {fileID: 451850}
   m_RootOrder: 0
---- !u!4 &497994
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 122016}
-  m_LocalRotation: {x: 0.00000008146034, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.2003942, z: 0.08758117}
-  m_LocalScale: {x: 7.9693317, y: 7.9693317, z: 7.9693317}
-  m_Children: []
-  m_Father: {fileID: 465630}
-  m_RootOrder: 1
 --- !u!4 &498830
 Transform:
   m_ObjectHideFlags: 1
@@ -11081,7 +11081,7 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 144728}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: a268bd9c61e9f724ab6ebd193490376d, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 24868f5c928ac4a3ab31ac7be55e33c3, type: 3}
   m_Controller: {fileID: 9100000, guid: 9725467f8619340b7a6ccd2efac4bac0, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -11123,12 +11123,12 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.88700366
   m_Center: {x: 0, y: 0.63, z: 0}
---- !u!137 &13761432
+--- !u!137 &13763704
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 122016}
+  m_GameObject: {fileID: 142800}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -11152,7 +11152,7 @@ SkinnedMeshRenderer:
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
-  m_Mesh: {fileID: 4300000, guid: a268bd9c61e9f724ab6ebd193490376d, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 24868f5c928ac4a3ab31ac7be55e33c3, type: 3}
   m_Bones:
   - {fileID: 401092}
   - {fileID: 454874}
