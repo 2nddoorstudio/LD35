@@ -16,6 +16,7 @@ public class PlayerBase : UnitBase {
 
 	[SerializeField]
 	Renderer render;
+	Animator animator;
 
 	float humanDamage = 0.35f;
 	float stagDamage = 0.5f;
@@ -54,6 +55,7 @@ public class PlayerBase : UnitBase {
 		currentBehaviour = UpdateHuman;
 
 		rBody = GetComponent<Rigidbody>();
+		animator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -189,7 +191,10 @@ public class PlayerBase : UnitBase {
 		if (Input.GetButton("Fire1"))
 		{
 			MoveForward(humanMovementSpeed);
+			animator.SetFloat("AnimSpeed", 1.0f);
 		}
+		else
+			animator.SetFloat("AnimSpeed", 0.0f);
 	}
 
 	void UpdateStag()
@@ -197,7 +202,10 @@ public class PlayerBase : UnitBase {
 		if (Input.GetButton("Fire1"))
 		{
 			MoveForward(stagMovementSpeed);
+			animator.SetFloat("AnimSpeed", 1.0f);
 		}
+		else
+			animator.SetFloat("AnimSpeed", 0.0f);
 	}
 
 	void UpdateBear()
@@ -205,7 +213,10 @@ public class PlayerBase : UnitBase {
 		if (Input.GetButton("Fire1"))
 		{
 			MoveForward(bearMovementSpeed);
+			animator.SetFloat("AnimSpeed", 1.0f);
 		}
+		else
+			animator.SetFloat("AnimSpeed", 0.0f);
 	}
 
 	void OnTriggerStay(Collider other)
