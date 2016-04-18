@@ -6,6 +6,10 @@ TagManager:
   tags:
   - InGameUI
   - InGameUIHealth
+  - PauseMenu
+  - PauseMenuRingLeft
+  - PauseMenuRingRight
+  - PauseMenuInside
   layers:
   - Default
   - TransparentFX
