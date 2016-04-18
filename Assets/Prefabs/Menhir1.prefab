@@ -11,6 +11,7 @@ GameObject:
   - 33: {fileID: 3314260}
   - 23: {fileID: 2350350}
   - 95: {fileID: 9521884}
+  - 65: {fileID: 6557214}
   m_Layer: 0
   m_Name: Menhir1
   m_TagString: Untagged
@@ -63,6 +64,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107686}
   m_Mesh: {fileID: 4300000, guid: b0d95773bab03e14cabf4dfb7150c430, type: 3}
+--- !u!65 &6557214
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107686}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.634891, y: 0.52203524, z: 1.4892544}
+  m_Center: {x: 0.01180077, y: -0.039323933, z: 0.62904847}
 --- !u!95 &9521884
 Animator:
   serializedVersion: 3
