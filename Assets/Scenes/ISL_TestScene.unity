@@ -160,6 +160,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 161316541}
+  - 114: {fileID: 161316542}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -179,6 +180,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &161316542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 161316540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e579f3bf59cc459fb385aa8636770d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  b_gamePaused: 0
 --- !u!1 &199314673
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +271,7 @@ GameObject:
   - 23: {fileID: 210589010}
   - 143: {fileID: 210589009}
   - 114: {fileID: 210589013}
+  - 114: {fileID: 210589008}
   m_Layer: 0
   m_Name: Koala
   m_TagString: Untagged
@@ -265,6 +279,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &210589008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 210589007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6db9192bb7d26194fb559b5c3658fde1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  f_currentHealth: 0
+  f_maxHealth: 0
+  s_entityName: 
+  b_paused: 0
+  obj_gameManager: {fileID: 0}
+  v3_moveToLocation: {x: 0, y: 0, z: 0}
+  f_movementSpeed: 0
+  b_isMoving: 0
+  b_canAttack: 0
+  f_attackDamage: 0
+  f_attackCooldown: 0
+  f_attackRange: 0
+  obj_attackTarget: {fileID: 0}
+  currentShape: 0
+  humanMovementSpeed: 0.2
+  stagMovementSpeed: 0.3
+  bearMovementSpeed: 0.1
+  transformationDuration: 2
 --- !u!143 &210589009
 CharacterController:
   m_ObjectHideFlags: 0
@@ -336,7 +379,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 210589007}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45586d309b1b74cc8858d9236cda5b48, type: 3}
   m_Name: 
@@ -420,8 +463,8 @@ GameObject:
   m_Component:
   - 224: {fileID: 359700832}
   m_Layer: 5
-  m_Name: RotateSelector
-  m_TagString: Untagged
+  m_Name: GameUI
+  m_TagString: InGameUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -432,7 +475,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 359700831}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.86602527, w: -0.50000024}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
