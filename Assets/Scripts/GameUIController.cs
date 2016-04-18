@@ -4,9 +4,16 @@ using UnityEngine.UI;
 
 public class GameUIController : MonoBehaviour {
 	[SerializeField]
-	private GameObject GameUI;
+	GameObject shapeshiftUI;
+	CanvasRotation shapeshiftRotation;
+	[SerializeField]
+	GameObject waypointUI;
+	CanvasRotation waypointRotation;
+
 	[SerializeField]
 	PlayerBase player;
+	[SerializeField]
+	GameObject grove;
 
 	public float currentHealth = 1f;
 	public SpriteRenderer HealthUI;
@@ -17,14 +24,15 @@ public class GameUIController : MonoBehaviour {
 	public GameObject CircleBear;
 	public Light BearLight;
 
-
-	CanvasRotation canvasRotation;
+	//[SerializeField]
+	//CanvasRotation canvasRotation;
 
 	// Use this for initialization
 	void Start () 
 	{
 		//GameUI = GameObject.FindGameObjectWithTag("InGameUI");
-		canvasRotation = GetComponent<CanvasRotation>();
+		shapeshiftRotation = shapeshiftUI.GetComponent<CanvasRotation>();
+		waypointRotation = waypointUI.GetComponent<CanvasRotation>();
 		HumanLight.intensity = 0.75f;
 	}
 
@@ -33,7 +41,7 @@ public class GameUIController : MonoBehaviour {
 		
 		if (Input.GetKeyDown(KeyCode.A))
 		{
-			canvasRotation.RotateUI(GameUI, 240f, 0.3f);
+			shapeshiftRotation.RotateUI(240f, 0.3f);
 			HumanLight.intensity = 0.75f;
 			StagLight.intensity = 0f;
 			BearLight.intensity = 0f;
@@ -41,14 +49,14 @@ public class GameUIController : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.S))
 		{
-			canvasRotation.RotateUI(GameUI, 0f, 0.3f);
+			shapeshiftRotation.RotateUI(0f, 0.3f);
 			StagLight.intensity = 0.75f;
 			BearLight.intensity = 0f;
 			HumanLight.intensity = 0f;
 		}
 		if (Input.GetKeyDown(KeyCode.D))
 		{
-			canvasRotation.RotateUI(GameUI, 120f, 0.3f);
+			shapeshiftRotation.RotateUI(120f, 0.3f);
 			BearLight.intensity = 0.75f;
 			HumanLight.intensity = 0f;
 			StagLight.intensity = 0f;
@@ -56,6 +64,12 @@ public class GameUIController : MonoBehaviour {
 
 		HandleHealth ();
 
+		Vector2 v1 = Camera.main.WorldToViewportPoint(grove.transform.position.normalized);//new Vector2(grove.transform.position.x, grove.transform.position.z);//
+		Vector2 v2 = Camera.main.WorldToViewportPoint(player.transform.position.normalized);//new Vector2(player.transform.position.x, player.transform.position.z);//player.transform.position;//
+
+
+		float angle = Mathf.Atan2(v1.y - v2.y, v1.x - v2.x) * Mathf.Rad2Deg;
+		waypointRotation.RotateUI(angle - 90.0f);
 
 		//just for testing - remove from production
 		//if (Input.GetKeyDown(KeyCode.X))

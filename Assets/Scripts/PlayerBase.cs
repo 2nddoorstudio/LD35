@@ -117,14 +117,17 @@ public class PlayerBase : UnitBase {
 		switch (shape) 
 		{
 		case Shapeshift.Human:
+			movementSpeed = humanMovementSpeed;
 			newTextureSliderA = 0.0f;
 			newTextureSliderB = 0.0f;
 			break;
 		case Shapeshift.Stag:
+			movementSpeed = stagMovementSpeed;
 			newTextureSliderA = 1.0f;
 			newTextureSliderB = 0.0f;
 			break;
 		case Shapeshift.Bear:
+			movementSpeed = bearMovementSpeed;
 			newTextureSliderA = 1.0f;
 			newTextureSliderB = 1.0f;
 			break;

@@ -83,6 +83,7 @@ public class VillagerController : UnitBase {
 	IEnumerator StandCoroutine()
 	{
 		behaviourMode = BehaviourMode.Wandering;
+		movementSpeed = 0.0f;
 
 		yield return new WaitForSeconds(Random.Range(2.0f, 4.0f));
 
@@ -92,6 +93,7 @@ public class VillagerController : UnitBase {
 	IEnumerator WanderCoroutine()
 	{
 		behaviourMode = BehaviourMode.Wandering;
+		movementSpeed = wanderSpeed;
 
 		float startingTime = Time.time;
 		float timeToWonder = Random.Range(1.0f, 3.0f);
@@ -100,7 +102,7 @@ public class VillagerController : UnitBase {
 
 		while (Time.time < startingTime + timeToWonder)
 		{
-			MoveForward(wanderSpeed);
+			MoveForward();
 			yield return null;
 		}
 		StartCoroutine(StandCoroutine());
@@ -109,6 +111,7 @@ public class VillagerController : UnitBase {
 	IEnumerator ShelterCoroutine(Vector3 target)
 	{
 		behaviourMode = BehaviourMode.Wandering;
+		movementSpeed = followSpeed;
 
 		float startingTime = Time.time;
 		float timeToWonder = startingTime + Random.Range(3.0f, 5.0f);
@@ -117,7 +120,7 @@ public class VillagerController : UnitBase {
 
 		while (Time.time < timeToWonder)
 		{
-			MoveForward(followSpeed);
+			MoveForward();
 			yield return null;
 		}
 		StartCoroutine(StandCoroutine());
@@ -126,6 +129,7 @@ public class VillagerController : UnitBase {
 	IEnumerator FollowCoroutine(PlayerBase player)
 	{
 		behaviourMode = BehaviourMode.Following;
+		movementSpeed = followSpeed;
 
 		float distance = Vector3.Distance(transform.position, player.transform.position);
 
@@ -133,7 +137,7 @@ public class VillagerController : UnitBase {
 		{
 			RotateToward(player.transform.position);
 
-			MoveForward(followSpeed);
+			MoveForward();
 
 			yield return null;
 
@@ -146,6 +150,7 @@ public class VillagerController : UnitBase {
 	IEnumerator FleeCoroutine(GameObject target)
 	{
 		behaviourMode = BehaviourMode.Fleeing;
+		movementSpeed = runSpeed;
 
 		float startingTime = Time.time;
 		float timeToFlee = startingTime + Random.Range(1.0f, 3.0f);
@@ -155,7 +160,7 @@ public class VillagerController : UnitBase {
 
 		while (Time.time < timeToFlee)
 		{
-			MoveForward(runSpeed);
+			MoveForward();
 
 			yield return null;
 		}

@@ -7,47 +7,40 @@ public class CanvasRotation : MonoBehaviour {
 
 	bool isRotating = false;
 
-	//float firstAngle = -90f;
-
 	// Use this for initialization
 	void Start () {
-		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-//		if (Input.GetKeyDown(KeyCode.T))
-//		{
-//			RotateUI(gameObject, firstAngle, 0.5f);
-//
-//		}
-//
-//		if (Input.GetKeyDown(KeyCode.Y))
-//		{
-//			RotateUI(gameObject, 20f, 0.5f);
-//
-//		}
 	}
 
-	public void RotateUI(GameObject go, float angle, float duration)
+	public void RotateUI(float angle, float duration)
 	{
-		if (isRotating )
+		if (isRotating)
 		{
 			StopAllCoroutines();
 		}
-		StartCoroutine(RotateUICoroutine(gameObject, angle, duration));
+		StartCoroutine(RotateUICoroutine(angle, duration));
 
 	}
 
-	IEnumerator RotateUICoroutine(GameObject go, float angle, float duration)
+	public void RotateUI(float angle)
+	{
+		rotation = transform.rotation.eulerAngles;
+		rotation.z = angle;
+		transform.rotation = Quaternion.Euler(rotation);
+
+	}
+
+	IEnumerator RotateUICoroutine(float angle, float duration)
 	{
 		isRotating = true;
 
 		float startTime = Time.time;
 		float endTime = startTime + duration;
 
-		rotation = go.transform.rotation.eulerAngles;
+		rotation = transform.rotation.eulerAngles;
 		float startAngle = rotation.z;
 		float newAngle = startAngle;
 		float t = 0.0f;
