@@ -22,9 +22,13 @@ public class VillagerController : UnitBase {
 
 	bool inSanctuary = false;
 
+	Animator animator;
+
 	// Use this for initialization
 	void Start () 
 	{
+		animator = GetComponent<Animator>();
+
 		StartCoroutine(StandCoroutine());
 	}
 	
@@ -84,6 +88,7 @@ public class VillagerController : UnitBase {
 	{
 		behaviourMode = BehaviourMode.Wandering;
 		movementSpeed = 0.0f;
+		animator.SetFloat("AnimSpeed", 0.0f);
 
 		yield return new WaitForSeconds(Random.Range(2.0f, 4.0f));
 
@@ -94,6 +99,7 @@ public class VillagerController : UnitBase {
 	{
 		behaviourMode = BehaviourMode.Wandering;
 		movementSpeed = wanderSpeed;
+		animator.SetFloat("AnimSpeed", 0.5f);
 
 		float startingTime = Time.time;
 		float timeToWonder = Random.Range(1.0f, 3.0f);
@@ -112,6 +118,7 @@ public class VillagerController : UnitBase {
 	{
 		behaviourMode = BehaviourMode.Wandering;
 		movementSpeed = followSpeed;
+		animator.SetFloat("AnimSpeed", 0.5f);
 
 		float startingTime = Time.time;
 		float timeToWonder = startingTime + Random.Range(3.0f, 5.0f);
@@ -130,6 +137,7 @@ public class VillagerController : UnitBase {
 	{
 		behaviourMode = BehaviourMode.Following;
 		movementSpeed = followSpeed;
+		animator.SetFloat("AnimSpeed", 0.5f);
 
 		float distance = Vector3.Distance(transform.position, player.transform.position);
 
@@ -151,6 +159,7 @@ public class VillagerController : UnitBase {
 	{
 		behaviourMode = BehaviourMode.Fleeing;
 		movementSpeed = runSpeed;
+		animator.SetFloat("AnimSpeed", 1.0f);
 
 		float startingTime = Time.time;
 		float timeToFlee = startingTime + Random.Range(1.0f, 3.0f);
