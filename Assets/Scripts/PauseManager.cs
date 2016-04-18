@@ -2,7 +2,9 @@
 using System.Collections;
 
 public class PauseManager : MonoBehaviour {
+	[SerializeField]
 	private GameObject PauseMenuRingLeft;
+	[SerializeField]
 	private GameObject PauseMenuRingRight;
 	//public SpriteRenderer InsideRing;
 	CanvasRotation canvasRotationR;
@@ -22,12 +24,12 @@ public class PauseManager : MonoBehaviour {
 		AudioListener.volume = 1;
 		UnityEngine.Cursor.visible = false;
 
-		PauseMenuRingRight = GameObject.FindGameObjectWithTag("PauseMenuRingRight");
-		PauseMenuRingLeft = GameObject.FindGameObjectWithTag("PauseMenuRingLeft");
+		//PauseMenuRingRight = GameObject.FindGameObjectWithTag("PauseMenuRingRight");
+		//PauseMenuRingLeft = GameObject.FindGameObjectWithTag("PauseMenuRingLeft");
 		canvasRotationR = PauseMenuRingRight.GetComponent<CanvasRotation>();
 		canvasRotationL = PauseMenuRingLeft.GetComponent<CanvasRotation>();
-		canvasRotationR.RotateUI(PauseMenuRingRight, 270f, 0.3f);
-		canvasRotationL.RotateUI(PauseMenuRingLeft, 90f, 0.3f);
+		canvasRotationR.RotateUI(270f, 0.3f);
+		canvasRotationL.RotateUI(90f, 0.3f);
 	}
 
 	void Update()
@@ -42,8 +44,8 @@ public class PauseManager : MonoBehaviour {
 			{
 
 				//pause menu UI
-				canvasRotationR.RotateUI(PauseMenuRingRight, 270f, 0.3f);
-				canvasRotationL.RotateUI(PauseMenuRingLeft, 90f, 0.3f);
+				canvasRotationR.RotateUI(270f, 0.3f);
+				canvasRotationL.RotateUI(90f, 0.3f);
 				//alpha = Mathf.Lerp(0.0, 0.0, 0.3) ;
 				//InsideRing.color = Color.Lerp(Color(0f,0f,0f, 0f),Color(0f,0f,0f, 0f),0.3f);
 
@@ -60,8 +62,8 @@ public class PauseManager : MonoBehaviour {
 			{
 
 				//pause menu UI
-				canvasRotationR.RotateUI(PauseMenuRingRight, 0f, 0.3f);
-				canvasRotationL.RotateUI(PauseMenuRingLeft, 0f, 0.3f);
+				canvasRotationR.RotateUI(0f, 0.3f);
+				canvasRotationL.RotateUI(0f, 0.3f);
 				//alpha = Mathf.Lerp(0.0, 0.8, 0.3) ;
 				//InsideRing.color = Color.Lerp(Color(0f,0f,0f, 0f),Color(0f,0f,0f, 0f),0.3f);
 
@@ -80,8 +82,8 @@ public class PauseManager : MonoBehaviour {
 	public void OnResumeButton()
 	{
 		//pause menu UI
-		canvasRotationR.RotateUI(PauseMenuRingRight, 270f, 0.3f);
-		canvasRotationL.RotateUI(PauseMenuRingLeft, 90f, 0.3f);
+		canvasRotationR.RotateUI(270f, 0.3f);
+		canvasRotationL.RotateUI(90f, 0.3f);
 		//InsideRing.color.a = 0f;
 
 		//unpause the game

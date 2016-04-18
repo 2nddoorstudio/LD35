@@ -322,14 +322,8 @@ MonoBehaviour:
   s_entityName: 
   b_paused: 0
   obj_gameManager: {fileID: 0}
-  v3_moveToLocation: {x: 0, y: 0, z: 0}
-  f_movementSpeed: 0
-  b_isMoving: 0
-  b_canAttack: 0
-  f_attackDamage: 0
-  f_attackCooldown: 0
-  f_attackRange: 0
-  obj_attackTarget: {fileID: 0}
+  MaxHealth: 100
+  damageMultiplier: 1
   wanderSpeed: 0.03
   runSpeed: 0.08
   followSpeed: 0.05
@@ -525,14 +519,8 @@ MonoBehaviour:
   s_entityName: 
   b_paused: 0
   obj_gameManager: {fileID: 0}
-  v3_moveToLocation: {x: 0, y: 0, z: 0}
-  f_movementSpeed: 0
-  b_isMoving: 0
-  b_canAttack: 0
-  f_attackDamage: 0
-  f_attackCooldown: 0
-  f_attackRange: 0
-  obj_attackTarget: {fileID: 0}
+  MaxHealth: 100
+  damageMultiplier: 1
   wanderSpeed: 0.03
   runSpeed: 0.08
   followSpeed: 0.05
@@ -919,14 +907,8 @@ MonoBehaviour:
   s_entityName: 
   b_paused: 0
   obj_gameManager: {fileID: 0}
-  v3_moveToLocation: {x: 0, y: 0, z: 0}
-  f_movementSpeed: 0
-  b_isMoving: 0
-  b_canAttack: 0
-  f_attackDamage: 0
-  f_attackCooldown: 0
-  f_attackRange: 0
-  obj_attackTarget: {fileID: 0}
+  MaxHealth: 100
+  damageMultiplier: 1
   wanderSpeed: 0.03
   runSpeed: 0.08
   followSpeed: 0.05
@@ -1040,14 +1022,8 @@ MonoBehaviour:
   s_entityName: 
   b_paused: 0
   obj_gameManager: {fileID: 0}
-  v3_moveToLocation: {x: 0, y: 0, z: 0}
-  f_movementSpeed: 0
-  b_isMoving: 0
-  b_canAttack: 0
-  f_attackDamage: 0
-  f_attackCooldown: 0
-  f_attackRange: 0
-  obj_attackTarget: {fileID: 0}
+  MaxHealth: 100
+  damageMultiplier: 1
   wanderSpeed: 0.03
   runSpeed: 0.08
   followSpeed: 0.05
@@ -1421,6 +1397,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc84b892b457413b8be5bdd0bdbaa31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PauseMenuRingLeft: {fileID: 759969064}
+  PauseMenuRingRight: {fileID: 1271960589}
   pauseMenu: {fileID: 1245429001}
   pauseEnabled: 0
 --- !u!114 &1245429004
@@ -1530,14 +1508,8 @@ MonoBehaviour:
   s_entityName: 
   b_paused: 0
   obj_gameManager: {fileID: 0}
-  v3_moveToLocation: {x: 0, y: 0, z: 0}
-  f_movementSpeed: 0
-  b_isMoving: 0
-  b_canAttack: 0
-  f_attackDamage: 0
-  f_attackCooldown: 0
-  f_attackRange: 0
-  obj_attackTarget: {fileID: 0}
+  MaxHealth: 100
+  damageMultiplier: 1
   wanderSpeed: 0.03
   runSpeed: 0.08
   followSpeed: 0.05
@@ -1651,14 +1623,8 @@ MonoBehaviour:
   s_entityName: 
   b_paused: 0
   obj_gameManager: {fileID: 0}
-  v3_moveToLocation: {x: 0, y: 0, z: 0}
-  f_movementSpeed: 0
-  b_isMoving: 0
-  b_canAttack: 0
-  f_attackDamage: 0
-  f_attackCooldown: 0
-  f_attackRange: 0
-  obj_attackTarget: {fileID: 0}
+  MaxHealth: 100
+  damageMultiplier: 1
   wanderSpeed: 0.03
   runSpeed: 0.08
   followSpeed: 0.05
@@ -1815,14 +1781,9 @@ MonoBehaviour:
   s_entityName: 
   b_paused: 0
   obj_gameManager: {fileID: 0}
-  v3_moveToLocation: {x: 0, y: 0, z: 0}
-  f_movementSpeed: 100
-  b_isMoving: 0
-  b_canAttack: 0
-  f_attackDamage: 0
-  f_attackCooldown: 0
-  f_attackRange: 0
-  obj_attackTarget: {fileID: 0}
+  MaxHealth: 100
+  damageMultiplier: 1
+  render: {fileID: 0}
   currentShape: 0
   humanMovementSpeed: 0.1
   stagMovementSpeed: 0.15

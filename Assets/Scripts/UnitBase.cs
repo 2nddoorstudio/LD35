@@ -9,6 +9,7 @@ public class UnitBase : EntityBase {
 
 	protected enum BehaviourMode
 	{
+		Standing,
 		Wandering,
 		Following,
 		Fleeing,
@@ -25,6 +26,7 @@ public class UnitBase : EntityBase {
 	protected float damageMultiplier = 1.0f;
 
 	protected float movementSpeed;
+	protected float animationSpeed;
 
 
 	// movement vars

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 
 public class VillagerController : UnitBase {
@@ -11,6 +12,8 @@ public class VillagerController : UnitBase {
 	float runSpeed = 0.15f;
 	[SerializeField]
 	float followSpeed = 0.1f;
+
+	Dictionary<BehaviourMode, float> speeds;
 
 	[SerializeField]
 	float chanceToWander = 0.1f;
@@ -29,6 +32,15 @@ public class VillagerController : UnitBase {
 	{
 		animator = GetComponent<Animator>();
 
+		speeds = new Dictionary<BehaviourMode, float>();
+
+		speeds.Add(BehaviourMode.Standing, 0.0f);
+		speeds.Add(BehaviourMode.Wandering, wanderSpeed);
+		speeds.Add(BehaviourMode.Following, followSpeed);
+		speeds.Add(BehaviourMode.Fleeing, runSpeed);
+		speeds.Add(BehaviourMode.Attacking, 0.0f);
+
+
 		StartCoroutine(StandCoroutine());
 	}
 	
@@ -42,7 +54,7 @@ public class VillagerController : UnitBase {
 		
 		base.OnPlayerTrigger (player, shape);
 
-		if (behaviourMode == BehaviourMode.Wandering || shape != previousShape)
+		if (behaviourMode == BehaviourMode.Wandering || behaviourMode == BehaviourMode.Standing || shape != previousShape)
 		{
 			switch (shape) 
 			{
@@ -84,11 +96,36 @@ public class VillagerController : UnitBase {
 
 	}
 
+	void SetMode(BehaviourMode mode)
+	{
+		behaviourMode = mode;
+
+		if(speeds == null)
+		{
+			Debug.Log("speed is null");
+			return;
+		}
+		else
+			movementSpeed = speeds[mode];
+
+
+		//animationSpeed = Mathf.InverseLerp(wanderSpeed, runSpeed, movementSpeed);
+		//animationSpeed += 0.4f;
+		if (mode == BehaviourMode.Standing) animationSpeed = 0.0f;
+		if (mode == BehaviourMode.Attacking) animationSpeed = 0.0f;
+		if (mode == BehaviourMode.Wandering) animationSpeed = 0.5f;
+		if (mode == BehaviourMode.Fleeing) animationSpeed = 1.0f;
+		if (mode == BehaviourMode.Following) animationSpeed = 0.7f;
+		//Debug.Log(animationSpeed);
+		animator.SetFloat("AnimSpeed", animationSpeed);
+	}
+
 	IEnumerator StandCoroutine()
 	{
-		behaviourMode = BehaviourMode.Wandering;
+		/*behaviourMode = BehaviourMode.Standing;
 		movementSpeed = 0.0f;
-		animator.SetFloat("AnimSpeed", 0.0f);
+		animator.SetFloat("AnimSpeed", 0.0f);*/
+		SetMode(BehaviourMode.Standing);
 
 		yield return new WaitForSeconds(Random.Range(2.0f, 4.0f));
 
@@ -97,9 +134,10 @@ public class VillagerController : UnitBase {
 
 	IEnumerator WanderCoroutine()
 	{
-		behaviourMode = BehaviourMode.Wandering;
+		/*behaviourMode = BehaviourMode.Wandering;
 		movementSpeed = wanderSpeed;
-		animator.SetFloat("AnimSpeed", 0.5f);
+		animator.SetFloat("AnimSpeed", 0.5f);*/
+		SetMode(BehaviourMode.Wandering);
 
 		float startingTime = Time.time;
 		float timeToWonder = Random.Range(1.0f, 3.0f);
@@ -116,9 +154,10 @@ public class VillagerController : UnitBase {
 
 	IEnumerator ShelterCoroutine(Vector3 target)
 	{
-		behaviourMode = BehaviourMode.Wandering;
+		/*behaviourMode = BehaviourMode.Wandering;
 		movementSpeed = followSpeed;
-		animator.SetFloat("AnimSpeed", 0.5f);
+		animator.SetFloat("AnimSpeed", 0.5f);*/
+		SetMode(BehaviourMode.Following);
 
 		float startingTime = Time.time;
 		float timeToWonder = startingTime + Random.Range(3.0f, 5.0f);
@@ -135,9 +174,10 @@ public class VillagerController : UnitBase {
 
 	IEnumerator FollowCoroutine(PlayerBase player)
 	{
-		behaviourMode = BehaviourMode.Following;
+		/*behaviourMode = BehaviourMode.Following;
 		movementSpeed = followSpeed;
-		animator.SetFloat("AnimSpeed", 0.5f);
+		animator.SetFloat("AnimSpeed", 0.5f);*/
+		SetMode(BehaviourMode.Following);
 
 		float distance = Vector3.Distance(transform.position, player.transform.position);
 
@@ -157,9 +197,10 @@ public class VillagerController : UnitBase {
 
 	IEnumerator FleeCoroutine(GameObject target)
 	{
-		behaviourMode = BehaviourMode.Fleeing;
+		/*behaviourMode = BehaviourMode.Fleeing;
 		movementSpeed = runSpeed;
-		animator.SetFloat("AnimSpeed", 1.0f);
+		animator.SetFloat("AnimSpeed", 1.0f);*/
+		SetMode(BehaviourMode.Fleeing);
 
 		float startingTime = Time.time;
 		float timeToFlee = startingTime + Random.Range(1.0f, 3.0f);
