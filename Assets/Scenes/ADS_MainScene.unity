@@ -786,8 +786,10 @@ MonoBehaviour:
   areaWidth: 200
   areaHeight: 200
   excludeZone: 25
-  villagerPrefab: {fileID: 161382, guid: 211644023add00541aa110d21c02def8, type: 2}
-  villagerNumber: 40
+  villagerAPrefab: {fileID: 161382, guid: 211644023add00541aa110d21c02def8, type: 2}
+  villagerANumber: 20
+  villagerBPrefab: {fileID: 161382, guid: 211644023add00541aa110d21c02def8, type: 2}
+  villagerBNumber: 20
   enemyPrefab: {fileID: 0}
   enemyNumber: 0
   terrainPrefabs:
