@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class EntityManager : MonoBehaviour {
-
+	
 	[SerializeField]
 	float areaWidth = 200.0f;
 	[SerializeField]
@@ -35,6 +35,7 @@ public class EntityManager : MonoBehaviour {
 	float widthMax;
 	float heightMin;
 	float heightMax;
+
 
 	// Use this for initialization
 	void Start () 

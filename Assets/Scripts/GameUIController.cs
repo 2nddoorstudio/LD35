@@ -15,6 +15,9 @@ public class GameUIController : MonoBehaviour {
 	[SerializeField]
 	GameObject grove;
 
+	[SerializeField]
+	Text scoreText;
+
 	public float currentHealth = 1f;
 	public SpriteRenderer HealthUI;
 	public GameObject CircleHuman;
@@ -70,6 +73,8 @@ public class GameUIController : MonoBehaviour {
 
 		float angle = Mathf.Atan2(v1.y - v2.y, v1.x - v2.x) * Mathf.Rad2Deg;
 		waypointRotation.RotateUI(angle - 90.0f);
+
+		scoreText.text = GameManager.safeVillagers.ToString();
 
 		//just for testing - remove from production
 		//if (Input.GetKeyDown(KeyCode.X))

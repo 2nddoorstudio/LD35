@@ -84,7 +84,7 @@ public class VillagerController : UnitBase {
 		{
 			StopAllCoroutines();
 			StartCoroutine(ShelterCoroutine(go.transform.position));
-			
+			GameManager.safeVillagers += 1;
 		}
 
 		inSanctuary = safe;

@@ -3,6 +3,8 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
+	public static int safeVillagers = 0;
+
 	public bool b_gamePaused;
 
 	public delegate void GamePause(object sender, System.EventArgs e);
