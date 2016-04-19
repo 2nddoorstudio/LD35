@@ -7,6 +7,8 @@ public class EnemyController : UnitBase {
 	float walkSpeed = 0.1f;
 	[SerializeField]
 	float trackSpeed = 0.15f;
+	[SerializeField]
+	float runSpeed = 0.16f;
 
 	[SerializeField]
 	float attackRange = 3.0f;
@@ -22,7 +24,7 @@ public class EnemyController : UnitBase {
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	public override void Update () 
 	{
 		base.Update();
 	
@@ -31,6 +33,7 @@ public class EnemyController : UnitBase {
 	IEnumerator WanderCoroutine()
 	{
 		behaviourMode = BehaviourMode.Wandering;
+		animator.SetBool("IsAttacking", false);
 		animator.SetFloat("AnimSpeed", 0.5f);
 
 		float startingTime = Time.time;
@@ -49,6 +52,7 @@ public class EnemyController : UnitBase {
 	IEnumerator FollowCoroutine(UnitBase target)
 	{
 		behaviourMode = BehaviourMode.Following;
+		animator.SetBool("IsAttacking", false);
 		animator.SetFloat("AnimSpeed", 1.0f);
 
 
@@ -89,6 +93,41 @@ public class EnemyController : UnitBase {
 		animator.SetBool("IsAttacking", false);
 
 		StartCoroutine(WanderCoroutine());
+	}
+
+	IEnumerator FleeCoroutine(GameObject target)
+	{
+		behaviourMode = BehaviourMode.Fleeing;
+		movementSpeed = walkSpeed;
+		animator.SetBool("IsAttacking", false);
+		animator.SetFloat("AnimSpeed", 1.0f);
+
+		RotateToward(target.transform.position);
+		RotateAngle(180f);
+
+		float endTime = Time.time + Random.Range(2.0f, 4.0f);
+
+		while (Time.time < endTime)
+		{
+			MoveForward();
+
+			yield return null;
+		}
+
+		StartCoroutine(WanderCoroutine());
+	}
+
+	public override void OnSanctuaryTrigger(bool entering, GameObject go)
+	{
+		//if (entering != inSanctuary && entering)
+		if (entering)
+		{
+			StopAllCoroutines();
+			StartCoroutine(FleeCoroutine(go));
+		}
+
+		inSanctuary = entering;
+
 	}
 
 	void OnTriggerEnter(Collider other)

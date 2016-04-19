@@ -30,6 +30,8 @@ public class UnitBase : EntityBase {
 
 	protected Animator animator;
 
+	protected bool inSanctuary = false;
+
 
 	// movement vars
 	/*public Vector3 v3_moveToLocation;
@@ -200,6 +202,10 @@ public class UnitBase : EntityBase {
 
 	}
 
+	public bool GetIsInSanctuary()
+	{
+		return inSanctuary;
+	}
 
 	#endregion
 

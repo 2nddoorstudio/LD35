@@ -206,7 +206,7 @@ public class PlayerBase : UnitBase {
 
 		while(Time.time < endTime)
 		{
-			float t = Mathf.InverseLerp(startTime, endTime, Time.time);
+			//float t = Mathf.InverseLerp(startTime, endTime, Time.time);
 
 			//material.SetFloat("_TransitionA", Mathf.Lerp(textureSliderA, newTextureSliderA, t));
 			//material.SetFloat("_TransitionB", Mathf.Lerp(textureSliderB, newTextureSliderB, t));

@@ -74,7 +74,7 @@ public class GameUIController : MonoBehaviour {
 		float angle = Mathf.Atan2(v1.y - v2.y, v1.x - v2.x) * Mathf.Rad2Deg;
 		waypointRotation.RotateUI(angle - 90.0f);
 
-		scoreText.text = GameManager.safeVillagers.ToString();
+		scoreText.text = EntityManager.safeVillagers.ToString();
 
 		//just for testing - remove from production
 		//if (Input.GetKeyDown(KeyCode.X))

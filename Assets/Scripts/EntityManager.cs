@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class EntityManager : MonoBehaviour {
-	
+
+	public static int safeVillagers = 0;
+
+
 	[SerializeField]
 	float areaWidth = 200.0f;
 	[SerializeField]
@@ -84,6 +87,20 @@ public class EntityManager : MonoBehaviour {
 
 		}
 
+	}
+
+	void Update()
+	{
+
+		int villagerCount = 0;
+
+		foreach(UnitBase villager in villagers)
+		{
+			if (villager.GetIsInSanctuary())
+				villagerCount ++;
+		}
+
+		safeVillagers = villagerCount;
 	}
 
 	Vector3 GetRandomPosition(float height)

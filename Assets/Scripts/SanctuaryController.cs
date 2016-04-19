@@ -11,15 +11,22 @@ public class SanctuaryController : MonoBehaviour {
 	float glowFadeInSpeed = 1.5f;
 	float glowFadeOutSpeed = 0.5f;	
 
+	int VillagerCount;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		projector.material.color = new Color(0,1,1,defaultAlpha);
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update () 
+	{
+		//if as villager has been added since last frame
+		if (VillagerCount < EntityManager.safeVillagers)
+			StartCoroutine(GlowUp());	// Begin glow effect
+		
+		VillagerCount = EntityManager.safeVillagers;
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -30,8 +37,6 @@ public class SanctuaryController : MonoBehaviour {
 			return;
 
 		unit.OnSanctuaryTrigger(true, gameObject);
-
-		StartCoroutine(GlowUp());	// Begin glow effect
 
 	}
 

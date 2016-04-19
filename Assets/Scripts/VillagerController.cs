@@ -23,8 +23,6 @@ public class VillagerController : UnitBase {
 	Shapeshift shape;
 	Shapeshift previousShape;
 
-	bool inSanctuary = false;
-
 	// Use this for initialization
 	public override void Start () {
 		base.Start();
@@ -42,7 +40,8 @@ public class VillagerController : UnitBase {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public override void Update () 
+	{
 		base.Update();
 	}
 
@@ -84,7 +83,7 @@ public class VillagerController : UnitBase {
 		{
 			StopAllCoroutines();
 			StartCoroutine(ShelterCoroutine(go.transform.position));
-			GameManager.safeVillagers += 1;
+			//GameManager.safeVillagers += 1;
 		}
 
 		inSanctuary = safe;
