@@ -5,7 +5,10 @@ using System.Collections.Generic;
 public class EntityManager : MonoBehaviour {
 
 	public static int safeVillagers = 0;
+	public static int totalVillagers;
 
+	[SerializeField]
+	SceneLoader sceneLoader;
 
 	[SerializeField]
 	float areaWidth = 200.0f;
@@ -43,6 +46,8 @@ public class EntityManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		totalVillagers = villagerANumber + villagerBNumber;
+
 		widthMin = -(areaWidth / 2);
 		widthMax = widthMin + areaWidth;
 
@@ -101,6 +106,9 @@ public class EntityManager : MonoBehaviour {
 		}
 
 		safeVillagers = villagerCount;
+
+		if (safeVillagers == totalVillagers)
+			sceneLoader.OnCredits();
 	}
 
 	Vector3 GetRandomPosition(float height)

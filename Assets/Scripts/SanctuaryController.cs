@@ -27,6 +27,7 @@ public class SanctuaryController : MonoBehaviour {
 			StartCoroutine(GlowUp());	// Begin glow effect
 		
 		VillagerCount = EntityManager.safeVillagers;
+
 	}
 
 	void OnTriggerEnter(Collider other)
