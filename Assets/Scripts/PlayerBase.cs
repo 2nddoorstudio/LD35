@@ -14,8 +14,20 @@ public class PlayerBase : UnitBase {
 
 	#region "Class Vars"
 
+	//[SerializeField]
+	//Renderer render;
+
 	[SerializeField]
-	Renderer render;
+	GameObject druidPrefab;
+	[SerializeField]
+	GameObject bearPrefab;
+	[SerializeField]
+	GameObject stagPrefab;
+
+	GameObject currentPrefab;
+
+	[SerializeField]
+	GameObject transformParticles;
 
 	float humanDamage = 0.35f;
 	float stagDamage = 0.5f;
@@ -50,6 +62,8 @@ public class PlayerBase : UnitBase {
 	public override void Start () {
 		base.Start();
 
+		ChangePrefab(Shapeshift.Human);
+
 		damageMultiplier = humanDamage;
 		currentShape = Shapeshift.Human;
 		currentBehaviour = UpdateHuman;
@@ -61,6 +75,36 @@ public class PlayerBase : UnitBase {
 	public override void Update () 
 	{
 		base.Update();
+
+	}
+
+	void ChangePrefab(Shapeshift shape)
+	{
+		if (shape == Shapeshift.Human)
+		{
+			currentPrefab = druidPrefab;
+			druidPrefab.SetActive(true);
+			bearPrefab.SetActive(false);
+			stagPrefab.SetActive(false);
+		}
+
+		if (shape == Shapeshift.Stag)
+		{
+			currentPrefab = stagPrefab;
+			stagPrefab.SetActive(true);
+			druidPrefab.SetActive(false);
+			bearPrefab.SetActive(false);
+		}
+
+		if (shape == Shapeshift.Bear)
+		{
+			currentPrefab = bearPrefab;
+			bearPrefab.SetActive(true);
+			druidPrefab.SetActive(false);
+			stagPrefab.SetActive(false);
+		}
+
+		animator = currentPrefab.GetComponent<Animator>();
 
 	}
 
@@ -115,22 +159,28 @@ public class PlayerBase : UnitBase {
 
 		isTransforming = true;
 
+		GameObject go = Instantiate(transformParticles);
+		go.transform.position = transform.position;
+
 		switch (shape) 
 		{
 		case Shapeshift.Human:
+			ChangePrefab(Shapeshift.Human);
 			movementSpeed = humanMovementSpeed;
-			newTextureSliderA = 0.0f;
-			newTextureSliderB = 0.0f;
+			//newTextureSliderA = 0.0f;
+			//newTextureSliderB = 0.0f;
 			break;
 		case Shapeshift.Stag:
+			ChangePrefab(Shapeshift.Stag);
 			movementSpeed = stagMovementSpeed;
-			newTextureSliderA = 1.0f;
-			newTextureSliderB = 0.0f;
+			//newTextureSliderA = 1.0f;
+			//newTextureSliderB = 0.0f;
 			break;
 		case Shapeshift.Bear:
+			ChangePrefab(Shapeshift.Bear);
 			movementSpeed = bearMovementSpeed;
-			newTextureSliderA = 1.0f;
-			newTextureSliderB = 1.0f;
+			//newTextureSliderA = 1.0f;
+			//newTextureSliderB = 1.0f;
 			break;
 		default:
 			break;
@@ -147,14 +197,14 @@ public class PlayerBase : UnitBase {
 		float startTime = Time.time;
 		float endTime = startTime + transformationDuration;
 
-		Material material = render.material;
+		//Material material = render.material;
 
 		while(Time.time < endTime)
 		{
 			float t = Mathf.InverseLerp(startTime, endTime, Time.time);
 
-			material.SetFloat("_TransitionA", Mathf.Lerp(textureSliderA, newTextureSliderA, t));
-			material.SetFloat("_TransitionB", Mathf.Lerp(textureSliderB, newTextureSliderB, t));
+			//material.SetFloat("_TransitionA", Mathf.Lerp(textureSliderA, newTextureSliderA, t));
+			//material.SetFloat("_TransitionB", Mathf.Lerp(textureSliderB, newTextureSliderB, t));
 
 			yield return null;
 		}

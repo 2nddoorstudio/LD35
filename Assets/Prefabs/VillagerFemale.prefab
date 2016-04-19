@@ -18114,6 +18114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
+  currentHealth: 50
   s_entityName: 
   b_paused: 0
   obj_gameManager: {fileID: 0}
@@ -18616,6 +18617,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: maxHealth
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: currentHealth
       value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []

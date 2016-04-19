@@ -8,7 +8,8 @@ public class EntityBase : MonoBehaviour {
 	// Health vars
 	[SerializeField]
 	protected float maxHealth;
-	protected float currentHealth;
+	[SerializeField]
+	public float currentHealth;
 
 	// engine bookeeping
 	public string s_entityName;

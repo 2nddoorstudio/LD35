@@ -11102,6 +11102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
   s_entityName: 
   b_paused: 0
   obj_gameManager: {fileID: 0}

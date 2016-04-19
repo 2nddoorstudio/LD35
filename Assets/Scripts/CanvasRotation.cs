@@ -47,7 +47,7 @@ public class CanvasRotation : MonoBehaviour {
 
 		while(t < 1f)
 		{
-			Debug.Log(newAngle);
+			//Debug.Log(newAngle);
 			t = Mathf.InverseLerp(startTime, endTime, Time.time);
 			newAngle = Mathf.LerpAngle(startAngle, angle, t);
 			rotation.z = newAngle;

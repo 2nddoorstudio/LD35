@@ -52,19 +52,19 @@ public class EnemyController : UnitBase {
 		animator.SetFloat("AnimSpeed", 1.0f);
 
 
-		float distance;
-		do
+		float distance = Vector3.Distance(transform.position, target.transform.position);
+		while(distance > attackRange)
 		{
 
 			RotateToward(target.transform.position);
 			distance = Vector3.Distance(transform.position, target.transform.position);
-			Debug.Log(distance);
+			//Debug.Log(distance);
 
 			MoveForward(trackSpeed);
 
 			yield return null;
 		}
-		while(distance > attackRange);
+
 
 		StartCoroutine(AttackCoroutine(target));
 	}
@@ -73,13 +73,13 @@ public class EnemyController : UnitBase {
 	{
 		behaviourMode = BehaviourMode.Attacking;
 		movementSpeed = 0.0f;
-		MoveForward();
+		animator.SetFloat("AnimSpeed", 0.0f);
 		animator.SetBool("IsAttacking", true);
-
-		while(target.GetNormalizedHealth() > 0.0f)
+		//Debug.Log(target.currentHealth);
+		while(target != null && target.currentHealth > 0.1f)
 		{
-			Debug.Log(target.GetNormalizedHealth());
-			target.TakeDamage(0.01f, this as UnitBase);
+			//Debug.Log("attacking");
+			target.TakeDamage(0.1f, this as UnitBase);
 			//TODO: Attack
 			RotateToward(target.transform.position);
 
@@ -99,6 +99,7 @@ public class EnemyController : UnitBase {
 
 		if (behaviourMode == BehaviourMode.Wandering)
 		{
+			StopAllCoroutines();
 			StartCoroutine(FollowCoroutine(villager as UnitBase));
 		}
 			
