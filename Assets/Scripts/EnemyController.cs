@@ -55,8 +55,10 @@ public class EnemyController : UnitBase {
 		float distance;
 		do
 		{
+
 			RotateToward(target.transform.position);
 			distance = Vector3.Distance(transform.position, target.transform.position);
+			Debug.Log(distance);
 
 			MoveForward(trackSpeed);
 
@@ -76,6 +78,8 @@ public class EnemyController : UnitBase {
 
 		while(target.GetNormalizedHealth() > 0.0f)
 		{
+			Debug.Log(target.GetNormalizedHealth());
+			target.TakeDamage(0.01f, this as UnitBase);
 			//TODO: Attack
 			RotateToward(target.transform.position);
 

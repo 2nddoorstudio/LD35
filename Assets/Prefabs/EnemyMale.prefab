@@ -11107,7 +11107,7 @@ MonoBehaviour:
   obj_gameManager: {fileID: 0}
   damageMultiplier: 1
   walkSpeed: 0.06
-  trackSpeed: 0.08
+  trackSpeed: 0.07
   attackRange: 3
 --- !u!135 &13546980
 SphereCollider:

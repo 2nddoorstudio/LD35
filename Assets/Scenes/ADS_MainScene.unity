@@ -409,15 +409,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 465630, guid: 18b0d2284b4e50946b61c7efa8599e62, type: 2}
       propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 11412868, guid: 18b0d2284b4e50946b61c7efa8599e62, type: 2}
-      propertyPath: f_maxHealth
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11412868, guid: 18b0d2284b4e50946b61c7efa8599e62, type: 2}
-      propertyPath: f_currentHealth
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18b0d2284b4e50946b61c7efa8599e62, type: 2}
