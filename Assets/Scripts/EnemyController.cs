@@ -14,8 +14,9 @@ public class EnemyController : UnitBase {
 	GameObject target;
 
 	// Use this for initialization
-	void Start () 
-	{
+	public override void Start () {
+		base.Start();
+
 		StartCoroutine(WanderCoroutine());
 
 	}
@@ -30,6 +31,7 @@ public class EnemyController : UnitBase {
 	IEnumerator WanderCoroutine()
 	{
 		behaviourMode = BehaviourMode.Wandering;
+		animator.SetFloat("AnimSpeed", 0.5f);
 
 		float startingTime = Time.time;
 		float timeToWonder = Random.Range(3.0f, 5.0f);
@@ -47,12 +49,13 @@ public class EnemyController : UnitBase {
 	IEnumerator FollowCoroutine(UnitBase target)
 	{
 		behaviourMode = BehaviourMode.Following;
+		animator.SetFloat("AnimSpeed", 1.0f);
 
-		RotateToward(target.transform.position);
 
 		float distance;
 		do
 		{
+			RotateToward(target.transform.position);
 			distance = Vector3.Distance(transform.position, target.transform.position);
 
 			MoveForward(trackSpeed);
@@ -67,12 +70,19 @@ public class EnemyController : UnitBase {
 	IEnumerator AttackCoroutine(UnitBase target)
 	{
 		behaviourMode = BehaviourMode.Attacking;
+		movementSpeed = 0.0f;
+		MoveForward();
+		animator.SetBool("IsAttacking", true);
 
 		while(target.GetNormalizedHealth() > 0.0f)
 		{
 			//TODO: Attack
+			RotateToward(target.transform.position);
+
 			yield return null;
 		}
+
+		animator.SetBool("IsAttacking", false);
 
 		StartCoroutine(WanderCoroutine());
 	}

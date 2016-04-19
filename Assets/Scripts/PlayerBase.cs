@@ -16,7 +16,6 @@ public class PlayerBase : UnitBase {
 
 	[SerializeField]
 	Renderer render;
-	Animator animator;
 
 	float humanDamage = 0.35f;
 	float stagDamage = 0.5f;
@@ -48,14 +47,14 @@ public class PlayerBase : UnitBase {
 	#endregion
 
 	// Use this for initialization
-	void Start () {
-		currentHealth = MaxHealth;
+	public override void Start () {
+		base.Start();
+
 		damageMultiplier = humanDamage;
 		currentShape = Shapeshift.Human;
 		currentBehaviour = UpdateHuman;
 
 		rBody = GetComponent<Rigidbody>();
-		animator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame

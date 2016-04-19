@@ -6,8 +6,9 @@ public class EntityBase : MonoBehaviour {
 	#region "Class Vars"
 
 	// Health vars
-	public float f_currentHealth;
-	public float f_maxHealth;
+	[SerializeField]
+	protected float maxHealth;
+	protected float currentHealth;
 
 	// engine bookeeping
 	public string s_entityName;
@@ -21,8 +22,8 @@ public class EntityBase : MonoBehaviour {
 	// Use this for initialization
 	public virtual void Start () {
 	
-		f_maxHealth = 100F;
-		f_currentHealth = f_maxHealth;
+		//f_maxHealth = 100F;
+		//f_currentHealth = f_maxHealth;
 
 		s_entityName = "DEFAULT_ENTITY";
 		b_paused = false;
@@ -71,11 +72,11 @@ public class EntityBase : MonoBehaviour {
 	#region "Func: Combat"
 
 	// subtracts health from target, checks for death
-	public void TakeDamage(float damageValue) {
+	public void TakeDamage(float damageValue, UnitBase attacker) {
 
-		f_currentHealth -= damageValue;
+		currentHealth -= damageValue;
 
-		if (f_currentHealth <= 0) {
+		if (currentHealth <= 0) {
 			KillEntity ();
 		}
 	}
@@ -84,7 +85,7 @@ public class EntityBase : MonoBehaviour {
 	public void KillEntity() {
 
 		// flesh out for some cool death anims / particles
-		GameObject.Destroy (transform.gameObject);
+		GameObject.Destroy (gameObject);
 
 	}
 		

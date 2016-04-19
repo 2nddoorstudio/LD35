@@ -11101,15 +11101,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c75ee9c748126444acc69194c4f1ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  f_currentHealth: 0
-  f_maxHealth: 0
+  maxHealth: 100
   s_entityName: 
   b_paused: 0
   obj_gameManager: {fileID: 0}
-  MaxHealth: 100
   damageMultiplier: 1
-  walkSpeed: 0.1
-  trackSpeed: 0.15
+  walkSpeed: 0.06
+  trackSpeed: 0.08
   attackRange: 3
 --- !u!135 &13546980
 SphereCollider:
@@ -11121,8 +11119,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.88700366
-  m_Center: {x: 0, y: 0.63, z: 0}
+  m_Radius: 7.197387
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &13763704
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -11133,7 +11131,7 @@ SkinnedMeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: b5377c0531c3743129c307e83fd6932e, type: 2}
+  - {fileID: 2100000, guid: 77f6a61cd79be4b4583015251fab7bd3, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -11429,7 +11427,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 144728}

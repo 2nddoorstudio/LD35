@@ -1930,12 +1930,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db9192bb7d26194fb559b5c3658fde1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  f_currentHealth: 0
-  f_maxHealth: 0
+  maxHealth: 0
   s_entityName: 
   b_paused: 0
   obj_gameManager: {fileID: 0}
-  MaxHealth: 100
   damageMultiplier: 1
   render: {fileID: 2362546}
   currentShape: 0

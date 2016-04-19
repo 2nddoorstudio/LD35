@@ -19,14 +19,16 @@ public class UnitBase : EntityBase {
 	protected BehaviourMode behaviourMode;
 	protected Action currentBehaviour;
 
-	[SerializeField]
+	/*[SerializeField]
 	protected float MaxHealth = 100.0f;
-	protected float currentHealth;
+	protected float currentHealth;*/
 	[SerializeField]
 	protected float damageMultiplier = 1.0f;
 
 	protected float movementSpeed;
 	protected float animationSpeed;
+
+	protected Animator animator;
 
 
 	// movement vars
@@ -49,10 +51,14 @@ public class UnitBase : EntityBase {
 
 	// Use this for initialization
 	public override void Start () {
-
 		base.Start ();
 
+		animator = GetComponent<Animator>();
+
+		//currentHealth = MaxHealth;
+
 		behaviourMode = BehaviourMode.Wandering;
+
 		// default config for class vars
 		//v3_moveToLocation = transform.position;
 		//b_isMoving = false;
@@ -93,10 +99,14 @@ public class UnitBase : EntityBase {
 		Event_AIUpdate();
 	}
 
+	public void SetWalkAnimationSpeed(float speed)
+	{
+		
+	}
 
 	public float GetNormalizedHealth()
 	{
-		return (Mathf.InverseLerp(0.0f, MaxHealth, currentHealth));
+		return (Mathf.InverseLerp(0.0f, maxHealth, currentHealth));
 	}
 
 	#endregion

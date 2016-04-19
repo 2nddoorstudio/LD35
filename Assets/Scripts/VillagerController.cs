@@ -25,12 +25,9 @@ public class VillagerController : UnitBase {
 
 	bool inSanctuary = false;
 
-	Animator animator;
-
 	// Use this for initialization
-	void Start () 
-	{
-		animator = GetComponent<Animator>();
+	public override void Start () {
+		base.Start();
 
 		speeds = new Dictionary<BehaviourMode, float>();
 

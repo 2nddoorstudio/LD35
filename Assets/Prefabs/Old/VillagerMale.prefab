@@ -11101,12 +11101,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa746ccc00799824892f6ad372fe968e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  f_currentHealth: 0
-  f_maxHealth: 0
+  maxHealth: 0
   s_entityName: 
   b_paused: 0
   obj_gameManager: {fileID: 0}
-  MaxHealth: 100
   damageMultiplier: 1
   wanderSpeed: 0.03
   runSpeed: 0.15
