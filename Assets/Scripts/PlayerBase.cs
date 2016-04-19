@@ -154,41 +154,46 @@ public class PlayerBase : UnitBase {
 
 	void InitTransform(Shapeshift shape)
 	{
-		if (isTransforming)
-			return;
+		if (currentShape != shape) {	// Prevents stutter and unneeded smoke puff if we're already in the chosen form
 
-		isTransforming = true;
+			if (isTransforming)
+				return;
 
-		GameObject go = Instantiate(transformParticles);
-		go.transform.position = transform.position;
+			isTransforming = true;
 
-		switch (shape) 
-		{
-		case Shapeshift.Human:
-			ChangePrefab(Shapeshift.Human);
-			movementSpeed = humanMovementSpeed;
-			//newTextureSliderA = 0.0f;
-			//newTextureSliderB = 0.0f;
-			break;
-		case Shapeshift.Stag:
-			ChangePrefab(Shapeshift.Stag);
-			movementSpeed = stagMovementSpeed;
-			//newTextureSliderA = 1.0f;
-			//newTextureSliderB = 0.0f;
-			break;
-		case Shapeshift.Bear:
-			ChangePrefab(Shapeshift.Bear);
-			movementSpeed = bearMovementSpeed;
-			//newTextureSliderA = 1.0f;
-			//newTextureSliderB = 1.0f;
-			break;
-		default:
-			break;
+			GameObject go = Instantiate(transformParticles);
+			go.transform.position = transform.position;
+
+			switch (shape) 
+			{
+			case Shapeshift.Human:
+				ChangePrefab(Shapeshift.Human);
+				movementSpeed = humanMovementSpeed;
+				//newTextureSliderA = 0.0f;
+				//newTextureSliderB = 0.0f;
+				break;
+			case Shapeshift.Stag:
+				ChangePrefab(Shapeshift.Stag);
+				movementSpeed = stagMovementSpeed;
+				//newTextureSliderA = 1.0f;
+				//newTextureSliderB = 0.0f;
+				break;
+			case Shapeshift.Bear:
+				ChangePrefab(Shapeshift.Bear);
+				movementSpeed = bearMovementSpeed;
+				//newTextureSliderA = 1.0f;
+				//newTextureSliderB = 1.0f;
+				break;
+			default:
+				break;
+			}
+
+			currentShape = shape;
+			currentBehaviour = UpdateTransform;
+			StartCoroutine(Transformation());
+
 		}
 
-		currentShape = shape;
-		currentBehaviour = UpdateTransform;
-		StartCoroutine(Transformation());
 	}
 
 	//TODO: change transformation-- maybe one for each transition
