@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -26,6 +27,8 @@ public class VillagerDetection : MonoBehaviour {
 
 	SpellCastEffect activeEffect;
 
+	Action previousBehaviour;
+
 	void Start () {
 		playerBase = GetComponent<PlayerBase>();
 		spawnedWisps = new List<DetectorWisp>();
@@ -37,16 +40,22 @@ public class VillagerDetection : MonoBehaviour {
 				DestroyBeacons();
 				if (activeEffect != null) activeEffect.CallEndEffects();
 				detecting = false;
+				playerBase.CurrentBehaviour = previousBehaviour;
 			}
 			if (Input.GetKeyUp(KeyCode.Space)) {
 				DestroyBeacons();
 				if (activeEffect != null) activeEffect.CallEndEffects();
 				detecting = false;
+
+				playerBase.CurrentBehaviour = previousBehaviour;
 			}
 		} else {
 			if (cooldownRemaining == 0f) {
 				if (playerBase.currentShape == Shapeshift.Human) {
 					if (Input.GetKeyDown(KeyCode.Space)) {
+
+						previousBehaviour = playerBase.CurrentBehaviour;
+						playerBase.CurrentBehaviour = null;
 						detecting = true;
 
 						activeEffect = (SpellCastEffect) Instantiate(effect, transform.position, Quaternion.Euler(-90,0,0));

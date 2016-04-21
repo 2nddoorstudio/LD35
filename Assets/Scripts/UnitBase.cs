@@ -32,6 +32,11 @@ public class UnitBase : EntityBase {
 
 	protected bool inSanctuary = false;
 
+	public Action CurrentBehaviour {
+		get { return currentBehaviour; }
+		set { currentBehaviour = value; }
+	}
+
 
 	// movement vars
 	/*public Vector3 v3_moveToLocation;
