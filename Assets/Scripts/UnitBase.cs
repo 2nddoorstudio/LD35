@@ -207,6 +207,10 @@ public class UnitBase : EntityBase {
 		return inSanctuary;
 	}
 
+	public bool GetIsFollowing() {
+		return behaviourMode == BehaviourMode.Following;
+	}
+
 	#endregion
 
 	#region "Func: AI"
