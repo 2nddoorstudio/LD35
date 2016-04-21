@@ -41,7 +41,6 @@ public class DetectorWisp : MonoBehaviour {
 	IEnumerator FadeOut() {
 		particleSystem.Stop();
 		yield return new WaitForSeconds(2f);
-	    Debug.Log("See ya.");
 	    Destroy(gameObject);
 	    yield break;
 	}
