@@ -20,6 +20,9 @@ public class Minimap : MonoBehaviour {
 	[SerializeField]
 	RectTransform mapPanel;
 
+	[SerializeField]
+	bool showVillagers;
+
 	Dictionary<RectTransform, UnitBase> villagers;
 
 	ScrollRect scroll;
@@ -39,14 +42,14 @@ public class Minimap : MonoBehaviour {
 		scroll = GetComponent<ScrollRect>();
 		villagers = new Dictionary<RectTransform, UnitBase>();
 
-		foreach (UnitBase villager in entityManager.Villagers) {
+		if (showVillagers) {
+			foreach (UnitBase villager in entityManager.Villagers) {
 
-			GameObject icon = (GameObject) Instantiate(minimapVillager) as GameObject;
-//			icon.transform.localScale = Vector3.one;
-			icon.transform.SetParent(mapPanel);
-			icon.GetComponent<RectTransform>().localScale = Vector3.one;
-//			icon.GetComponent<RectTransform>().rotation = Quaternion.Euler(Vector3.zero);
-			villagers.Add(icon.GetComponent<RectTransform>(), villager);
+				GameObject icon = (GameObject) Instantiate(minimapVillager) as GameObject;
+				icon.transform.SetParent(mapPanel);
+				icon.GetComponent<RectTransform>().localScale = Vector3.one;
+				villagers.Add(icon.GetComponent<RectTransform>(), villager);
+			}
 		}
 	}
 
@@ -124,12 +127,13 @@ public class Minimap : MonoBehaviour {
 			rotation.z = -player.transform.rotation.eulerAngles.y;
 			arrow.transform.rotation = Quaternion.Euler(rotation);
 
-
-			foreach (KeyValuePair<RectTransform, UnitBase> villager in villagers) {
-				float villagerX = villager.Value.transform.position.x / 200f * 500f;
-				float villagerY = villager.Value.transform.position.z / 200f * 500f;
-				villager.Key.anchoredPosition3D = new Vector3(villagerX, villagerY, 0);
-				villager.Key.transform.rotation = Quaternion.identity;			
+			if (showVillagers) {
+				foreach (KeyValuePair<RectTransform, UnitBase> villager in villagers) {
+					float villagerX = villager.Value.transform.position.x / 200f * 500f;
+					float villagerY = villager.Value.transform.position.z / 200f * 500f;
+					villager.Key.anchoredPosition3D = new Vector3(villagerX, villagerY, 0);
+					villager.Key.transform.rotation = Quaternion.identity;			
+				}
 			}
 
 		}
