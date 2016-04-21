@@ -42,9 +42,11 @@ public class EntityManager : MonoBehaviour {
 	float heightMin;
 	float heightMax;
 
+	public List<UnitBase> Villagers {
+		get { return villagers; }
+	}
 
-	// Use this for initialization
-	void Start () 
+	void Awake () 
 	{
 		totalVillagers = villagerANumber + villagerBNumber;
 
