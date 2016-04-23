@@ -156,25 +156,36 @@ public class VillagerControllerNav : UnitBase {
 	IEnumerator WanderCoroutine()
 	{
 
-
 		Debug.Log("Wandering");
-
-
-		/*behaviourMode = BehaviourMode.Wandering;
-		movementSpeed = wanderSpeed;
-		animator.SetFloat("AnimSpeed", 0.5f);*/
 		SetMode(BehaviourMode.Wandering);
 
-		float startingTime = Time.time;
-		float timeToWonder = Random.Range(1.0f, 3.0f);
+		// Original wander behavior below:
+//		float startingTime = Time.time;
+//		float timeToWonder = Random.Range(1.0f, 3.0f);
+//
+//		RotateAngle(Random.Range(0.0f, 360.0f));
+//
+//		while (Time.time < startingTime + timeToWonder)
+//		{
+//			//MoveForward();
+//			yield return null;
+//		}
 
-		RotateAngle(Random.Range(0.0f, 360.0f));
 
-		while (Time.time < startingTime + timeToWonder)
-		{
-			//MoveForward();
-			yield return null;
+		RotateAngle(Random.Range(0f, 360f));
+		RaycastHit hit;
+		if (Physics.Raycast((transform.position + (transform.forward * 10f) + (Vector3.up *2f)), Vector3.down, out hit, 10f)) {
+			nma.SetDestination(hit.point);
+			nma.Resume();
 		}
+
+		float distance = Vector3.Distance(transform.position, nma.destination);
+
+		while (distance > 1f) {
+			yield return new WaitForSeconds(0.1f);
+			distance = Vector3.Distance(transform.position, nma.destination);
+		}
+
 		StartCoroutine(StandCoroutine());
 	}
 
