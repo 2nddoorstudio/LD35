@@ -127,11 +127,11 @@ public class PlayerBase : UnitBase {
 
 
 		//Rotate to face mouse
-//		Vector2 v1 = Camera.main.WorldToViewportPoint(transform.position);
-//		Vector2 v2 = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
-//
-//		float angle = Mathf.Atan2(v1.y - v2.y, v1.x - v2.x) * Mathf.Rad2Deg;
-//		transform.rotation = Quaternion.Euler (new Vector3(0f, -(angle - Camera.main.transform.parent.transform.rotation.eulerAngles.y + 90.0f), 0f));
+		Vector2 v1 = Camera.main.WorldToViewportPoint(transform.position);
+		Vector2 v2 = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
+
+		float angle = Mathf.Atan2(v1.y - v2.y, v1.x - v2.x) * Mathf.Rad2Deg;
+		transform.rotation = Quaternion.Euler (new Vector3(0f, -(angle - Camera.main.transform.parent.transform.rotation.eulerAngles.y + 90.0f), 0f));
 
 		//base.Update();
 		//if (currentBehaviour != null)
