@@ -14,7 +14,7 @@ NavMeshAreas:
   - name: Path
     cost: 1
   - name: Swimmable
-    cost: 1
+    cost: 10
   - name: 
     cost: 1
   - name: 
