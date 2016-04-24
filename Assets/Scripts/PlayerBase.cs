@@ -215,7 +215,6 @@ public class PlayerBase : UnitBase {
 		}
 
 		textureSliderA = newTextureSliderA;
-		textureSliderB = newTextureSliderB;
 
 		switch (currentShape) 
 		{
@@ -273,14 +272,25 @@ public class PlayerBase : UnitBase {
 			animator.SetFloat("AnimSpeed", 0.0f);
 	}
 
-	void OnTriggerStay(Collider other)
-	{
+	void OnTriggerStay(Collider other) {
+
 		UnitBase unit = other.gameObject.GetComponent<UnitBase>();
 
 		if (unit == null)
 			return;
 		
 		unit.OnPlayerTrigger(this, currentShape);
+
+	}
+
+	void OnTriggerEnter(Collider other)	//Stay(Collider other)
+	{
+		UnitBase unit = other.gameObject.GetComponent<UnitBase>();
+
+		if (unit == null)
+			return;
+		
+		unit.OnPlayerEnter(this, currentShape);
 
 	}
 }

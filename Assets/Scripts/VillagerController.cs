@@ -188,7 +188,7 @@ public class VillagerController : UnitBase {
 
 			distance = Vector3.Distance(transform.position, player.transform.position);
 		}
-
+		Debug.Log("Normal coroutine got here.");
 		StartCoroutine(StandCoroutine());
 	}
 
