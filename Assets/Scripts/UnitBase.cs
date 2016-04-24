@@ -201,6 +201,8 @@ public class UnitBase : EntityBase {
 		
 	}
 
+	public virtual void OnPlayerEnter (PlayerBase player, Shapeshift shape) {	}
+	public virtual void OnPlayerExit (PlayerBase player, Shapeshift shape) {	}
 
 	public virtual void OnSanctuaryTrigger(bool safe, GameObject go)
 	{

@@ -64,6 +64,13 @@ public class EntityManager : MonoBehaviour {
 		{
 			GameObject go = Instantiate(villagerAPrefab);
 			go.transform.position = GetRandomPosition(0.5f);
+
+
+				RaycastHit hit;
+				if(Physics.Raycast((go.transform.position + new Vector3(0,50f,0)),Vector3.down, out hit,150f)){
+					go.transform.position = hit.point + new Vector3(0,0.5f,0);
+				}
+
 			villagers.Add(go.GetComponent<UnitBase>());
 
 		}
@@ -72,6 +79,12 @@ public class EntityManager : MonoBehaviour {
 		{
 			GameObject go = Instantiate(villagerBPrefab);
 			go.transform.position = GetRandomPosition(0.5f);
+
+				RaycastHit hit;
+				if(Physics.Raycast((go.transform.position + new Vector3(0,50f,0)),Vector3.down, out hit,150f)){
+					go.transform.position = hit.point + new Vector3(0,0.5f,0);
+				}
+
 			villagers.Add(go.GetComponent<UnitBase>());
 
 		}
@@ -80,6 +93,12 @@ public class EntityManager : MonoBehaviour {
 		{
 			GameObject go = Instantiate(enemyPrefab);
 			go.transform.position = GetRandomPosition(0.0f);
+
+				RaycastHit hit;
+				if(Physics.Raycast((go.transform.position + new Vector3(0,50f,0)),Vector3.down, out hit,150f)){
+					go.transform.position = hit.point + new Vector3(0,0.5f,0);
+				}
+
 			enemies.Add(go.GetComponent<UnitBase>());
 		}
 
@@ -89,6 +108,12 @@ public class EntityManager : MonoBehaviour {
 			{
 				GameObject go = Instantiate(terrainPrefabs[j]);
 				go.transform.position = GetRandomPosition(0.0f);
+
+				RaycastHit hit;
+				if(Physics.Raycast((go.transform.position + new Vector3(0,50f,0)),Vector3.down, out hit,150f)){
+					go.transform.position = hit.point;
+				}
+
 				terrains.Add(go);
 			}
 

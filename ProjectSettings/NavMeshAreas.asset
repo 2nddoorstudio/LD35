@@ -11,10 +11,10 @@ NavMeshAreas:
     cost: 1
   - name: Jump
     cost: 2
-  - name: 
+  - name: Path
     cost: 1
-  - name: 
-    cost: 1
+  - name: Swimmable
+    cost: 10
   - name: 
     cost: 1
   - name: 
