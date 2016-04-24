@@ -98,6 +98,7 @@ public class VillagerController : UnitBase {
 
 		if(speeds == null)
 		{
+			
 			Debug.Log("speed is null");
 			return;
 		}
