@@ -3333,14 +3333,6 @@ Prefab:
       propertyPath: m_Name
       value: VillagerMaleNM (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 19502690, guid: e258d62812236694e833e3ad261b641d, type: 2}
-      propertyPath: m_Speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5464434, guid: e258d62812236694e833e3ad261b641d, type: 2}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e258d62812236694e833e3ad261b641d, type: 2}
   m_IsPrefabParent: 0
@@ -3835,10 +3827,6 @@ Prefab:
     - target: {fileID: 148224, guid: ebde939c46f67454da2200a9ea667d4a, type: 2}
       propertyPath: m_Name
       value: VillagerFemaleNM (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5467058, guid: ebde939c46f67454da2200a9ea667d4a, type: 2}
-      propertyPath: m_IsKinematic
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ebde939c46f67454da2200a9ea667d4a, type: 2}
@@ -10431,14 +10419,6 @@ Prefab:
     - target: {fileID: 108918, guid: e258d62812236694e833e3ad261b641d, type: 2}
       propertyPath: m_Name
       value: VillagerMaleNM (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 19502690, guid: e258d62812236694e833e3ad261b641d, type: 2}
-      propertyPath: m_Speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5464434, guid: e258d62812236694e833e3ad261b641d, type: 2}
-      propertyPath: m_IsKinematic
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e258d62812236694e833e3ad261b641d, type: 2}
