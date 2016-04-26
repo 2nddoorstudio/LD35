@@ -549,10 +549,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 406622}
   - 95: {fileID: 9591698}
-  - 135: {fileID: 13562224}
-  - 195: {fileID: 19502690}
   - 114: {fileID: 11419244}
+  - 195: {fileID: 19502690}
   - 54: {fileID: 5464434}
+  - 135: {fileID: 13562224}
   m_Layer: 0
   m_Name: VillagerMaleNM
   m_TagString: Untagged
@@ -6299,7 +6299,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 108918}
   m_LocalRotation: {x: 0, y: 0.99983233, z: 0, w: -0.018313656}
-  m_LocalPosition: {x: 8.5, y: 0, z: 32.45}
+  m_LocalPosition: {x: -35.33, y: 0.37745148, z: -0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 457780}
@@ -11057,7 +11057,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -11094,6 +11094,7 @@ MonoBehaviour:
   s_entityName: 
   b_paused: 0
   obj_gameManager: {fileID: 0}
+  behaviourMode: 0
   damageMultiplier: 1
   testBall: {fileID: 0}
   wanderSpeed: 0.05
@@ -11101,6 +11102,7 @@ MonoBehaviour:
   followSpeed: 0.1
   chanceToWander: 0.1
   chanceToStopWandering: 0.9
+  prevShape: 
 --- !u!135 &13562224
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -11421,11 +11423,11 @@ NavMeshAgent:
   m_GameObject: {fileID: 108918}
   m_Enabled: 1
   m_Radius: 0.2
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 5
+  m_Acceleration: 30
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 1
+  m_AngularSpeed: 360
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

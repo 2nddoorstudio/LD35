@@ -5,15 +5,16 @@ using System.Collections.Generic;
 
 public class VillagerControllerNav : UnitBase {
 
-
-	public GameObject testBall;
-
 	[SerializeField]
 	float wanderSpeed = 0.05f;
 	[SerializeField]
 	float runSpeed = 0.15f;
 	[SerializeField]
 	float followSpeed = 0.1f;
+
+	float nmaWanderSpeed = 2.5f;
+	float nmaRunSpeed = 10f;
+	float nmaFollowSpeed = 5f;
 
 	Dictionary<BehaviourMode, float> speeds;
 
@@ -53,25 +54,20 @@ public class VillagerControllerNav : UnitBase {
 	// Update is called once per frame
 	public override void Update () 
 	{
-//		base.Update();
-		//testBall.transform.position = nma.steeringTarget + Vector3.up;
-//		Debug.Log(behaviourMode.ToString() + " / Target: " + target.gameObject.name + " / Coords: " + nma.steeringTarget);
+		base.Update();
 	}
 
 	public override void OnPlayerTrigger (PlayerBase player, Shapeshift shape)
 	{
-		Debug.Log("OnPlayerTrigger");
+		base.OnPlayerTrigger (player, shape);
 
-//		base.OnPlayerTrigger (player, shape);
-
-		if (behaviourMode == BehaviourMode.Wandering || behaviourMode == BehaviourMode.Standing || shape != previousShape)
+		if (behaviourMode == BehaviourMode.Wandering || behaviourMode == BehaviourMode.Standing || behaviourMode == BehaviourMode.Following || shape != previousShape)
 		{
 			switch (shape) 
 			{
 			case Shapeshift.Human:
 				if (inSanctuary) break;
 				StopAllCoroutines();
-				Debug.Log("Here");
 				StartCoroutine(FollowCoroutine(player));
 				break;
 			case Shapeshift.Stag:
@@ -90,6 +86,7 @@ public class VillagerControllerNav : UnitBase {
 		}
 
 		previousShape = shape;
+
 	}
 //	public override void OnPlayerExit (PlayerBase player, Shapeshift shape) {
 //		following = false;
@@ -105,10 +102,8 @@ public class VillagerControllerNav : UnitBase {
 			//GameManager.safeVillagers += 1;
 		}
 
-		Debug.Log("On Sanctuary Trigger");
+//		Debug.Log("On Sanctuary Trigger");
 		inSanctuary = safe;
-
-		//if (safe)
 
 	}
 
@@ -142,8 +137,6 @@ public class VillagerControllerNav : UnitBase {
 		movementSpeed = 0.0f;
 		animator.SetFloat("AnimSpeed", 0.0f);*/
 
-		//Debug.Log("Standing");
-
 		nma.Stop();
 
 		SetMode(BehaviourMode.Standing);
@@ -158,6 +151,7 @@ public class VillagerControllerNav : UnitBase {
 
 		//Debug.Log("Wandering");
 		SetMode(BehaviourMode.Wandering);
+		nma.speed = nmaWanderSpeed;
 
 		// Original wander behavior below:
 //		float startingTime = Time.time;
@@ -174,7 +168,7 @@ public class VillagerControllerNav : UnitBase {
 
 		RotateAngle(Random.Range(0f, 360f));
 		RaycastHit hit;
-		if (Physics.Raycast((transform.position + (transform.forward * 10f) + (Vector3.up *2f)), Vector3.down, out hit, 10f)) {
+		if (Physics.Raycast((transform.position + (transform.forward * (nmaWanderSpeed * 2f)) + (Vector3.up *2f)), Vector3.down, out hit, 10f)) {
 			nma.SetDestination(hit.point);
 			nma.Resume();
 		}
@@ -194,9 +188,8 @@ public class VillagerControllerNav : UnitBase {
 		/*behaviourMode = BehaviourMode.Wandering;
 		movementSpeed = followSpeed;
 		animator.SetFloat("AnimSpeed", 0.5f);*/
-		SetMode(BehaviourMode.Following);
 
-		Debug.Log("Shelter Coroutine");
+		SetMode(BehaviourMode.Following);
 
 //		float startingTime = Time.time;
 //		float timeToWonder = startingTime + Random.Range(3.0f, 5.0f);
@@ -219,28 +212,32 @@ public class VillagerControllerNav : UnitBase {
 		StartCoroutine(StandCoroutine());
 	}
 
-	IEnumerator FollowCoroutine(PlayerBase player)
-	{
+	IEnumerator FollowCoroutine(PlayerBase player) {
 
 		SetMode(BehaviourMode.Following);
+		nma.speed = nmaFollowSpeed;
 
 		float distance = Vector3.Distance(transform.position, player.transform.position);
 		nma.SetDestination(player.transform.position);	// Keep updating the NavMeshAgent's destination (Vector3)
 		nma.Resume();
 
-		while (distance > 3.0f && distance < 15.0f)	{
-			//Debug.Log("Target: " + player.gameObject.name + " / Dist: " + distance);
+//		while (distance > 3.0f && distance < 15.0f)	{
+		while (distance < 15f) {
+
+			distance = Vector3.Distance(transform.position, player.transform.position);
+
+			if (distance < 2.5f) {
+				nma.Stop();
+			} else {
+				nma.SetDestination(player.transform.position);	// Keep updating the NavMeshAgent's destination (Vector3)
+			}
 
 			// Original movement script
 //			RotateToward(player.transform.position);
 //			MoveForward();
 //			yield return null;
 
-			nma.SetDestination(player.transform.position);	// Keep updating the NavMeshAgent's destination (Vector3)
-
-			distance = Vector3.Distance(transform.position, player.transform.position);
-
-			yield return new WaitForSeconds(0.25f);
+			yield return new WaitForSeconds(0.1f);
 //			yield return null;
 
 		}
@@ -251,23 +248,38 @@ public class VillagerControllerNav : UnitBase {
 
 	IEnumerator FleeCoroutine(GameObject target)
 	{
-		/*behaviourMode = BehaviourMode.Fleeing;
-		movementSpeed = runSpeed;
-		animator.SetFloat("AnimSpeed", 1.0f);*/
-		SetMode(BehaviourMode.Fleeing);
 
-		float startingTime = Time.time;
-		float timeToFlee = startingTime + Random.Range(1.0f, 3.0f);
+		SetMode(BehaviourMode.Fleeing);
+		nma.speed = nmaRunSpeed;
+
+		// Original, time-based flee system
+//		float startingTime = Time.time;
+//		float timeToFlee = startingTime + Random.Range(1.0f, 3.0f);
 
 		RotateToward(target.transform.position);
-		RotateAngle(180.0f);
+//		RotateAngle(180.0f);
+		RotateAngle(180f + Random.Range(-15f, 15f));	// Adding a bit of randomness?  Swap with above if undesired
 
-		while (Time.time < timeToFlee)
-		{
-			MoveForward();
-
-			yield return null;
+		RaycastHit hit;
+//		Debug.DrawRay((transform.position + (transform.forward * 15f) + (Vector3.up * 5f)), Vector3.down * 2f, Color.green, 10f);
+		if (Physics.Raycast((transform.position + (transform.forward * ((nmaRunSpeed * 2f) + Random.Range(-5f,5f))) + (Vector3.up * 5f)), Vector3.down, out hit, 10f)) {
+			nma.SetDestination(hit.point);
+			nma.Resume();
 		}
+
+		float distance = Vector3.Distance(transform.position, nma.destination);
+
+		while (distance > 1f) {
+			distance = Vector3.Distance(transform.position, nma.destination);
+			yield return new WaitForSeconds(0.1f);
+		}
+
+//		while (Time.time < timeToFlee)
+//		{
+//			MoveForward();
+//
+//			yield return null;
+//		}
 
 		StartCoroutine(StandCoroutine());
 
