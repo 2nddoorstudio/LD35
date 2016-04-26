@@ -8,7 +8,6 @@ public enum Shapeshift {
 	Stag
 }
 
-
 // Base class for player; can transform, attack
 public class PlayerBase : UnitBase {
 
@@ -56,11 +55,18 @@ public class PlayerBase : UnitBase {
 
 	Rigidbody rBody;
 
+	ThirdPersonMove movement;
+
 	#endregion
+	public void Awake() {
+
+		movement = GetComponent<ThirdPersonMove>();
+	}
 
 	// Use this for initialization
 	public override void Start () {
 		base.Start();
+
 
 		ChangePrefab(Shapeshift.Human);
 
@@ -80,6 +86,8 @@ public class PlayerBase : UnitBase {
 
 	void ChangePrefab(Shapeshift shape)
 	{
+		currentPrefab = druidPrefab;
+
 		if (shape == Shapeshift.Human)
 		{
 			currentPrefab = druidPrefab;
@@ -104,6 +112,8 @@ public class PlayerBase : UnitBase {
 			stagPrefab.SetActive(false);
 		}
 
+		movement.model = currentPrefab;
+		movement.anim = currentPrefab.GetComponent<Animator>();
 		animator = currentPrefab.GetComponent<Animator>();
 
 	}
@@ -112,26 +122,28 @@ public class PlayerBase : UnitBase {
 	{
 		base.UpdateLogic ();
 
-		if (Input.GetKeyDown(KeyCode.A))
+		if (Input.GetButtonDown("Form1"))
 		{
 			InitTransform(Shapeshift.Human);
 		}
-		if (Input.GetKeyDown(KeyCode.S))
+		if (Input.GetButtonDown("Form2"))
 		{
 			InitTransform(Shapeshift.Stag);
 		}
-		if (Input.GetKeyDown(KeyCode.D))
+		if (Input.GetButtonDown("Form3"))
 		{
 			InitTransform(Shapeshift.Bear);
 		}
+		if (Input.GetButtonDown("Form4")) { }
 
 
-		//Rotate to face mouse
-		Vector2 v1 = Camera.main.WorldToViewportPoint(transform.position);
-		Vector2 v2 = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
-
-		float angle = Mathf.Atan2(v1.y - v2.y, v1.x - v2.x) * Mathf.Rad2Deg;
-		transform.rotation = Quaternion.Euler (new Vector3(0f, -(angle - Camera.main.transform.parent.transform.rotation.eulerAngles.y + 90.0f), 0f));
+		// OLD MOUSE / MOVEMENT STUFF BELOW
+//		Rotate to face mouse
+//		Vector2 v1 = Camera.main.WorldToViewportPoint(transform.position);
+//		Vector2 v2 = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
+//
+//		float angle = Mathf.Atan2(v1.y - v2.y, v1.x - v2.x) * Mathf.Rad2Deg;
+//		transform.rotation = Quaternion.Euler (new Vector3(0f, -(angle - Camera.main.transform.parent.transform.rotation.eulerAngles.y + 90.0f), 0f));
 
 		//base.Update();
 		//if (currentBehaviour != null)
@@ -241,35 +253,35 @@ public class PlayerBase : UnitBase {
 
 	void UpdateHuman()
 	{
-		if (Input.GetButton("Fire1"))
-		{
-			MoveForward(humanMovementSpeed);
-			animator.SetFloat("AnimSpeed", 1.0f);
-		}
-		else
-			animator.SetFloat("AnimSpeed", 0.0f);
+//		if (Input.GetButton("Fire1"))
+//		{
+//			MoveForward(humanMovementSpeed);
+//			animator.SetFloat("AnimSpeed", 1.0f);
+//		}
+//		else
+//			animator.SetFloat("AnimSpeed", 0.0f);
 	}
 
 	void UpdateStag()
 	{
-		if (Input.GetButton("Fire1"))
-		{
-			MoveForward(stagMovementSpeed);
-			animator.SetFloat("AnimSpeed", 1.0f);
-		}
-		else
-			animator.SetFloat("AnimSpeed", 0.0f);
+//		if (Input.GetButton("Fire1"))
+//		{
+//			MoveForward(stagMovementSpeed);
+//			animator.SetFloat("AnimSpeed", 1.0f);
+//		}
+//		else
+//			animator.SetFloat("AnimSpeed", 0.0f);
 	}
 
 	void UpdateBear()
 	{
-		if (Input.GetButton("Fire1"))
-		{
-			MoveForward(bearMovementSpeed);
-			animator.SetFloat("AnimSpeed", 1.0f);
-		}
-		else
-			animator.SetFloat("AnimSpeed", 0.0f);
+//		if (Input.GetButton("Fire1"))
+//		{
+//			MoveForward(bearMovementSpeed);
+//			animator.SetFloat("AnimSpeed", 1.0f);
+//		}
+//		else
+//			animator.SetFloat("AnimSpeed", 0.0f);
 	}
 
 	void OnTriggerStay(Collider other) {
