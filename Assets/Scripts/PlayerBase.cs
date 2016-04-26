@@ -37,11 +37,11 @@ public class PlayerBase : UnitBase {
 	public Shapeshift currentShape;
 
 	[SerializeField]
-	float humanMovementSpeed = 0.2f;
+	float humanMovementSpeed = 4f;
 	[SerializeField]
-	float stagMovementSpeed = 0.3f;
+	float stagMovementSpeed = 8f;
 	[SerializeField]
-	float bearMovementSpeed = 0.1f;
+	float bearMovementSpeed = 2f;
 
 	[SerializeField]
 	float transformationDuration = 2.0f;
@@ -69,6 +69,7 @@ public class PlayerBase : UnitBase {
 
 
 		ChangePrefab(Shapeshift.Human);
+		movement.speed = humanMovementSpeed;
 
 		damageMultiplier = humanDamage;
 		currentShape = Shapeshift.Human;
@@ -181,18 +182,21 @@ public class PlayerBase : UnitBase {
 			case Shapeshift.Human:
 				ChangePrefab(Shapeshift.Human);
 				movementSpeed = humanMovementSpeed;
+				movement.speed = humanMovementSpeed;
 				//newTextureSliderA = 0.0f;
 				//newTextureSliderB = 0.0f;
 				break;
 			case Shapeshift.Stag:
 				ChangePrefab(Shapeshift.Stag);
 				movementSpeed = stagMovementSpeed;
+				movement.speed = stagMovementSpeed;
 				//newTextureSliderA = 1.0f;
 				//newTextureSliderB = 0.0f;
 				break;
 			case Shapeshift.Bear:
 				ChangePrefab(Shapeshift.Bear);
 				movementSpeed = bearMovementSpeed;
+				movement.speed = bearMovementSpeed;
 				//newTextureSliderA = 1.0f;
 				//newTextureSliderB = 1.0f;
 				break;

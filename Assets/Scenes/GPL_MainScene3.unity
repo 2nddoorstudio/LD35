@@ -10249,9 +10249,9 @@ MonoBehaviour:
   stagPrefab: {fileID: 256203050}
   transformParticles: {fileID: 152774, guid: 244ff14eade894cb3a1530c87061972d, type: 2}
   currentShape: 0
-  humanMovementSpeed: 0.075
-  stagMovementSpeed: 0.15
-  bearMovementSpeed: 0.06
+  humanMovementSpeed: 4.5
+  stagMovementSpeed: 9
+  bearMovementSpeed: 3.5
   transformationDuration: 0.1
 --- !u!1 &1347898233
 GameObject:
