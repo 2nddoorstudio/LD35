@@ -5,6 +5,9 @@ namespace SecondDoorStudio.HotF.StateMachines
 {
 	public class VillagerSanctuary : VillagerState {
 
+		[SerializeField]
+		float walkDuration = 2.0f;
+
 		public override void Enter ()
 		{
 			base.Enter ();
@@ -15,12 +18,12 @@ namespace SecondDoorStudio.HotF.StateMachines
 		{
 			animator.SetFloat("AnimSpeed", 0.5f);
 			
-			nav.SetDestination(Vector3.zero);
-			float distance = Vector3.Distance(transform.position, Vector3.zero);
-			
-			while (distance > 1f) {
-				yield return new WaitForSeconds(0.1f);
-			}
+			nav.SetDestination(target.transform.position);
+
+			yield return new WaitForSeconds(walkDuration);
+
+			nav.Stop();
+			animator.SetFloat("AnimSpeed", 0.0f);
 
 			owner.ChangeState<WanderState>();
 		}

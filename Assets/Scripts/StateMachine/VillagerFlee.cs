@@ -20,6 +20,8 @@ namespace SecondDoorStudio.HotF.StateMachines
 
 			animator.SetFloat("AnimSpeed", 1.0f);
 			nav.speed = speed;
+			//TODO: this need to be time-based, if the villager can't reach the destination they'll get stuck. Should be like sanctuary but away
+
 
 			// Original, time-based flee system
 			//		float startingTime = Time.time;

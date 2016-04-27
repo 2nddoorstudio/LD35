@@ -6,22 +6,22 @@ namespace SecondDoorStudio.HotF.StateMachines
 	public abstract class State : MonoBehaviour {
 
 		public IEnumerator currentAction {
-			get {return _currentState;}
+			get {return _currentAction;}
 			set 
 			{
-				if (value != _currentState)
+				if (value != _currentAction)
 				{
-					if (_currentState != null)
-						StopCoroutine(_currentState);
+					if (_currentAction != null)
+						StopCoroutine(_currentAction);
 
-					_currentState = value;
+					_currentAction = value;
 
-					if (_currentState != null)
-						StartCoroutine(_currentState);
+					if (_currentAction != null)
+						StartCoroutine(_currentAction);
 				}
 			}
 		}
-		IEnumerator _currentState;
+		IEnumerator _currentAction;
 
 		public virtual void Enter()
 		{

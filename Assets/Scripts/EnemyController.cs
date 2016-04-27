@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using SecondDoorStudio.HotF.StateMachines;
+
 public class EnemyController : UnitBase {
 
 	[SerializeField]
@@ -130,7 +132,7 @@ public class EnemyController : UnitBase {
 
 	}
 
-	void OnTriggerEnter(Collider other)
+	/*void OnTriggerEnter(Collider other)
 	{
 		VillagerController villager = other.GetComponent<VillagerController>();
 		if (villager == null)
@@ -142,5 +144,5 @@ public class EnemyController : UnitBase {
 			StartCoroutine(FollowCoroutine(villager as UnitBase));
 		}
 			
-	}
+	}*/
 }

@@ -8,73 +8,90 @@ namespace SecondDoorStudio.HotF.StateMachines
 		public NavMeshAgent nav;
 		public Animator animator;
 
+		[HideInInspector]
 		public GameObject target;
 
-		bool inSanctuary = false;
+		public bool isInSanctuary = false;
+		public bool isFollowing = false;
 
 		void Start () 
 		{
 			ChangeState<VillagerInitState>();
 		}
 
-		public void OnPlayerTrigger (PlayerBase player, Shapeshift shape)
+		public void OnTriggerEnter(Collider other)
 		{
-			target = player.gameObject;
-
-			ChangeState<VillagerFollow>();
-
-			//player.
-			/*if (behaviourMode == BehaviourMode.Wandering || behaviourMode == BehaviourMode.Standing || behaviourMode == BehaviourMode.Following || shape != previousShape)
+			//Enter player radius
+			PlayerBase player = other.GetComponent<PlayerBase>();
+			if (player != null)
 			{
-				switch (shape) 
+				if (!isInSanctuary)
 				{
-				case Shapeshift.Human:
-					if (inSanctuary) break;
-					StopAllCoroutines();
-					StartCoroutine(FollowCoroutine(player));
-					break;
-				case Shapeshift.Stag:
-					if (inSanctuary) break;
-					StopAllCoroutines();
-					StartCoroutine(FollowCoroutine(player));
-					break;
-				case Shapeshift.Bear:
-					StopAllCoroutines();
-					StartCoroutine(FleeCoroutine(player.gameObject));
-					break;
-				default:
-					break;
+					player.transformEvent += OnTransformEvent;
+					
+					target = player.gameObject;
+					
+					ChangeState<VillagerFollow>();
+					
 				}
-
+				
 			}
 
-			previousShape = shape;
-			*/
-		}
-		//	public override void OnPlayerExit (PlayerBase player, Shapeshift shape) {
-		//		following = false;
-		//		target = null;
-		//	}
-
-		public void OnSanctuaryTrigger(bool safe, GameObject go)
-		{
-			if (safe != inSanctuary && safe)
+			//Enter Sanctuary
+			SanctuaryController sanctuary = other.GetComponent<SanctuaryController>();
+			if (sanctuary != null)
 			{
+				isInSanctuary = true;
+
+				target = sanctuary.gameObject;
+
 				ChangeState<VillagerSanctuary>();
-				/*StopAllCoroutines();
-				StartCoroutine(ShelterCoroutine(go.transform.position));*/
-				//GameManager.safeVillagers += 1;
 			}
-
-			//		Debug.Log("On Sanctuary Trigger");
-			inSanctuary = safe;
-
 		}
 
-		public void OnBear()
+		public void OnTriggerExit(Collider other)
 		{
-			
-			//ChangeState<
+			//Exit player radius
+			PlayerBase player = other.GetComponent<PlayerBase>();
+			if (player != null)
+			{
+				player.transformEvent -= OnTransformEvent;
+			}
+
+			//Exit Sanctuary
+			SanctuaryController sanctuary = other.GetComponent<SanctuaryController>();
+			if (sanctuary != null)
+			{
+				isInSanctuary = false;
+
+				target = null;
+
+				ChangeState<WanderState>();
+			}
+		}
+
+		public void OnTransformEvent(object sender, InfoEventArgs<Shapeshift> e)
+		{
+			PlayerBase player = sender as PlayerBase;
+
+			switch (e.info) 
+			{
+			case Shapeshift.Human:
+				break;
+
+			case Shapeshift.Stag:
+				break;
+
+			case Shapeshift.Bear:
+				Debug.Log("Run from bear");
+				target = player.gameObject;
+				ChangeState<VillagerFlee>();
+				break;
+
+			default:
+				break;
+			}
+
 		}
 	}
 	

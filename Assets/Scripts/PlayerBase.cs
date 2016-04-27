@@ -57,6 +57,8 @@ public class PlayerBase : UnitBase {
 
 	ThirdPersonMove movement;
 
+	public event EventHandler<InfoEventArgs<Shapeshift>> transformEvent;
+
 	#endregion
 	public void Awake() {
 
@@ -204,6 +206,9 @@ public class PlayerBase : UnitBase {
 				break;
 			}
 
+			if (transformEvent != null)
+				transformEvent(this, new InfoEventArgs<Shapeshift>(shape));
+
 			currentShape = shape;
 			currentBehaviour = UpdateTransform;
 			StartCoroutine(Transformation());
@@ -288,7 +293,7 @@ public class PlayerBase : UnitBase {
 //			animator.SetFloat("AnimSpeed", 0.0f);
 	}
 
-	void OnTriggerStay(Collider other) {
+	/*void OnTriggerStay(Collider other) {
 
 		//UnitBase unit = other.gameObject.GetComponent<UnitBase>();
 		VillagerController unit = other.gameObject.GetComponent<VillagerController>();
@@ -302,17 +307,11 @@ public class PlayerBase : UnitBase {
 
 	void OnTriggerEnter(Collider other)	//Stay(Collider other)
 	{
-		/*UnitBase unit = other.gameObject.GetComponent<UnitBase>();
-
-		if (unit == null)
-			return;
-		
-		unit.OnPlayerEnter(this, currentShape);*/
 		VillagerController unit = other.gameObject.GetComponent<VillagerController>();
 
 		if (unit != null)
 		{
 			unit.OnPlayerTrigger(this, currentShape);
 		}
-	}
+	}*/
 }
