@@ -42,7 +42,7 @@ public class GameUIController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		if (Input.GetKeyDown(KeyCode.A))
+		if (Input.GetButtonDown("Form1"))
 		{
 			shapeshiftRotation.RotateUI(240f, 0.3f);
 			HumanLight.intensity = 0.75f;
@@ -50,14 +50,14 @@ public class GameUIController : MonoBehaviour {
 			BearLight.intensity = 0f;
 		}
 
-		if (Input.GetKeyDown(KeyCode.S))
+		if (Input.GetButtonDown("Form2"))
 		{
 			shapeshiftRotation.RotateUI(0f, 0.3f);
 			StagLight.intensity = 0.75f;
 			BearLight.intensity = 0f;
 			HumanLight.intensity = 0f;
 		}
-		if (Input.GetKeyDown(KeyCode.D))
+		if (Input.GetButtonDown("Form3"))
 		{
 			shapeshiftRotation.RotateUI(120f, 0.3f);
 			BearLight.intensity = 0.75f;

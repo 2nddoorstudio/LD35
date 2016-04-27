@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using SecondDoorStudio.HotF.StateMachines;
 
 public class VillagerDetection : MonoBehaviour {
 
@@ -75,7 +76,7 @@ public class VillagerDetection : MonoBehaviour {
         while (i < colliders.Length) {
         	VillagerController villagerController = colliders[i].GetComponent<VillagerController>();
         	if (villagerController != null) {
-        		if (!villagerController.GetIsInSanctuary() && !villagerController.GetIsFollowing()) {
+				if (!villagerController.isInSanctuary && !villagerController.isFollowing) {
 					DetectorWisp newWisp = (DetectorWisp) Instantiate(wisp, colliders[i].transform.position, transform.rotation);
 					newWisp.Target = transform.position;
 					spawnedWisps.Add(newWisp);

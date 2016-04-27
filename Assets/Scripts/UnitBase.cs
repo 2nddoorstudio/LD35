@@ -7,16 +7,19 @@ public class UnitBase : EntityBase {
 
 	#region "Class Vars"
 
-	protected enum BehaviourMode
+//	protected enum BehaviourMode
+	public enum BehaviourMode
 	{
 		Standing,
 		Wandering,
 		Following,
 		Fleeing,
-		Attacking
+		Attacking,
+		Casting
 	}
 
-	protected BehaviourMode behaviourMode;
+//	protected BehaviourMode behaviourMode;
+	public BehaviourMode behaviourMode;
 	protected Action currentBehaviour;
 
 	/*[SerializeField]
