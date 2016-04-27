@@ -22,6 +22,8 @@ public class ThirdPersonMove : MonoBehaviour
     public bool jumping;
 
 //	public bool frozen;
+
+	public GameObject model;
     
     Vector3 defaultFollowCamPos;
 	Vector3 defaultOverheadCamPos;
@@ -30,7 +32,7 @@ public class ThirdPersonMove : MonoBehaviour
 
     public Animator anim;
 
-	public bool cameraIsOverhead = false;
+	public bool cameraIsOverhead = true;
 
 	GameObject targetCircle;
 
@@ -39,7 +41,7 @@ public class ThirdPersonMove : MonoBehaviour
 //		stamina = charMaxStamina;
 //		charTempStamina = charMaxStamina;
         rigidbody = GetComponent<Rigidbody>();
-        defaultFollowCamPos = new Vector3(0, 2, -5);
+        defaultFollowCamPos = new Vector3(0, 1f, -4f);
 		defaultOverheadCamPos = new Vector3 (0, 15f, 0);
 //		proj = GetComponentInChildren<Projector> ();
 //		proj.enabled = true;
@@ -73,7 +75,7 @@ public class ThirdPersonMove : MonoBehaviour
 			}
 		} else {
 			defaultOverheadCamPos = new Vector3 (0, 4f, -15f);
-			anchor.transform.eulerAngles = new Vector3(ClampAngle(anchor.transform.eulerAngles.x, 30f, 80f), anchor.transform.eulerAngles.y, 0);
+			anchor.transform.eulerAngles = new Vector3(ClampAngle(anchor.transform.eulerAngles.x, 25f, 65f), anchor.transform.eulerAngles.y, 0);
 			camera.transform.localPosition = Vector3.Lerp(camera.transform.localPosition, defaultOverheadCamPos, Time.deltaTime * cameraCorrectSpeed);    // Lerp back toward target spot
 		}
         
@@ -88,7 +90,7 @@ public class ThirdPersonMove : MonoBehaviour
 						//Debug.Log ("Jumping off of: " + hit.collider.name);
 						rigidbody.velocity = new Vector3 (rigidbody.velocity.x, 0, rigidbody.velocity.z);
 						rigidbody.AddRelativeForce (Vector3.up * jumpForce);
-						anim.SetTrigger ("Jump");
+//						anim.SetTrigger ("Jump");
 						jumping = true;
 					}
 //				}
@@ -97,7 +99,7 @@ public class ThirdPersonMove : MonoBehaviour
 
         if (canRun)     // [TO-DO] We'll eventually know whether or not we're allowing running/jumping, so this check can be removed.
         { 
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetButton("Run"))
             {
                 running = true;
             }
@@ -114,7 +116,7 @@ public class ThirdPersonMove : MonoBehaviour
                 if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.05f, layerMask.value))
                 {
                     //Debug.Log("Ground collision with: " + hit.collider.name);
-                    anim.SetTrigger("Grounded");
+//                    anim.SetTrigger("Grounded");
                     jumping = false;
                 }
             }
@@ -122,9 +124,12 @@ public class ThirdPersonMove : MonoBehaviour
 
         // [TO-DO] Remove or implement overhead camera transitions here
 //		if (Input.GetButtonUp ("Zoom")) {
-		if (Input.GetKeyUp(KeyCode.Z)) {
+		if (Input.GetButtonUp("Camera")) {
 			cameraIsOverhead = !cameraIsOverhead;
 		}
+
+
+		//anim.SetFloat("AnimSpeed", 1.0f);
 
     }
 
@@ -137,10 +142,11 @@ public class ThirdPersonMove : MonoBehaviour
         float strafe = Input.GetAxis("Horizontal");
         float walkRun = Input.GetAxis("Vertical");
 
-        anim.SetFloat("Velocity", walkRun);
-        anim.SetFloat("Direction", strafe);
+//        anim.SetFloat("Velocity", walkRun);
 
-        anim.SetBool("Running", running);
+//        anim.SetFloat("Direction", strafe);
+
+//        anim.SetBool("Running", running);
 
         //Debug.Log("Raw: x" + moveX + " / y" + moveY + " | Strafe: " + strafe + " | WalkRun: " + walkRun);
 
@@ -160,14 +166,20 @@ public class ThirdPersonMove : MonoBehaviour
         //Debug.Log(moveDir.magnitude);
 //		if (!frozen) 
 		// [TO-DO] Check animation stuff here
-		anim.SetFloat("Magnitude", moveDir.magnitude);
+//		anim.SetFloat("Magnitude", moveDir.magnitude);
 
         Vector3 moveVelocity = moveDir * tempSpeed;
 
 		// Uncomment below if no stamina system
 		rigidbody.velocity = new Vector3 (moveVelocity.x, rigidbody.velocity.y, moveVelocity.z);
+		if (rigidbody.velocity.magnitude > 0.1f) {
+			model.transform.rotation = Quaternion.LookRotation(rigidbody.velocity);
+			model.transform.rotation = Quaternion.Euler(0f,model.transform.rotation.eulerAngles.y,0f);
+		}
 
-        anim.SetFloat("Gravity", rigidbody.velocity.y);
+        anim.SetFloat("AnimSpeed", rigidbody.velocity.magnitude);
+
+//        anim.SetFloat("Gravity", rigidbody.velocity.y);
 
     }
 

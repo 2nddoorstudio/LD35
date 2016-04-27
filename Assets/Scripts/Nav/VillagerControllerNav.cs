@@ -14,7 +14,7 @@ public class VillagerControllerNav : UnitBase {
 
 	float nmaWanderSpeed = 2.5f;
 	float nmaRunSpeed = 10f;
-	float nmaFollowSpeed = 5f;
+	float nmaFollowSpeed = 4.35f;
 
 	Dictionary<BehaviourMode, float> speeds;
 
@@ -119,14 +119,16 @@ public class VillagerControllerNav : UnitBase {
 		else
 			movementSpeed = speeds[mode];
 
-
 		//animationSpeed = Mathf.InverseLerp(wanderSpeed, runSpeed, movementSpeed);
 		//animationSpeed += 0.4f;
 		if (mode == BehaviourMode.Standing) animationSpeed = 0.0f;
-		if (mode == BehaviourMode.Attacking) animationSpeed = 0.0f;
-		if (mode == BehaviourMode.Wandering) animationSpeed = 0.5f;
-		if (mode == BehaviourMode.Fleeing) animationSpeed = 1.0f;
-		if (mode == BehaviourMode.Following) animationSpeed = 0.7f;
+//		if (mode == BehaviourMode.Attacking) animationSpeed = 0.0f;
+//		if (mode == BehaviourMode.Wandering) animationSpeed = 0.5f;
+//		if (mode == BehaviourMode.Fleeing) animationSpeed = 1.0f;
+//		if (mode == BehaviourMode.Following) animationSpeed = 0.7f;
+		if (mode == BehaviourMode.Wandering) animationSpeed = nmaWanderSpeed;
+		if (mode == BehaviourMode.Fleeing) animationSpeed = nmaRunSpeed;
+		if (mode == BehaviourMode.Following) animationSpeed = nmaFollowSpeed;
 		//Debug.Log(animationSpeed);
 		animator.SetFloat("AnimSpeed", animationSpeed);
 	}
@@ -140,6 +142,7 @@ public class VillagerControllerNav : UnitBase {
 		nma.Stop();
 
 		SetMode(BehaviourMode.Standing);
+		animator.SetFloat("AnimSpeed",0f);
 
 		yield return new WaitForSeconds(Random.Range(2.0f, 4.0f));
 
@@ -165,7 +168,6 @@ public class VillagerControllerNav : UnitBase {
 //			yield return null;
 //		}
 
-
 		RotateAngle(Random.Range(0f, 360f));
 		RaycastHit hit;
 		if (Physics.Raycast((transform.position + (transform.forward * (nmaWanderSpeed * 2f)) + (Vector3.up *2f)), Vector3.down, out hit, 10f)) {
@@ -175,9 +177,9 @@ public class VillagerControllerNav : UnitBase {
 
 		float distance = Vector3.Distance(transform.position, nma.destination);
 
-		while (distance > 1f) {
-			yield return new WaitForSeconds(0.1f);
+		while (distance > nma.stoppingDistance) {
 			distance = Vector3.Distance(transform.position, nma.destination);
+			yield return new WaitForSeconds(0.1f);
 		}
 
 		StartCoroutine(StandCoroutine());
@@ -202,10 +204,11 @@ public class VillagerControllerNav : UnitBase {
 //			yield return null;
 //		}
 
-		nma.SetDestination(Vector3.zero);
+		nma.SetDestination(new Vector3(Random.Range(-4f, 4f), Random.Range(-4f, 4f), Random.Range(-4f,4f)));
 		float distance = Vector3.Distance(transform.position, Vector3.zero);
 
-		while (distance > 1f) {
+		while (distance > nma.stoppingDistance) {
+			distance = Vector3.Distance(transform.position, nma.destination);
 			yield return new WaitForSeconds(0.1f);
 		}
 
@@ -226,8 +229,9 @@ public class VillagerControllerNav : UnitBase {
 
 			distance = Vector3.Distance(transform.position, player.transform.position);
 
-			if (distance < 2.5f) {
+			if (distance < nma.stoppingDistance) {
 				nma.Stop();
+				animator.SetFloat("AnimSpeed",0.0f);
 			} else {
 				nma.SetDestination(player.transform.position);	// Keep updating the NavMeshAgent's destination (Vector3)
 			}
@@ -269,7 +273,7 @@ public class VillagerControllerNav : UnitBase {
 
 		float distance = Vector3.Distance(transform.position, nma.destination);
 
-		while (distance > 1f) {
+		while (distance > nma.stoppingDistance) {
 			distance = Vector3.Distance(transform.position, nma.destination);
 			yield return new WaitForSeconds(0.1f);
 		}
