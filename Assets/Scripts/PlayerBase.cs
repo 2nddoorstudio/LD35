@@ -274,7 +274,8 @@ public class PlayerBase : UnitBase {
 
 	void OnTriggerStay(Collider other) {
 
-		UnitBase unit = other.gameObject.GetComponent<UnitBase>();
+		//UnitBase unit = other.gameObject.GetComponent<UnitBase>();
+		VillagerController unit = other.gameObject.GetComponent<VillagerController>();
 
 		if (unit == null)
 			return;
@@ -285,12 +286,17 @@ public class PlayerBase : UnitBase {
 
 	void OnTriggerEnter(Collider other)	//Stay(Collider other)
 	{
-		UnitBase unit = other.gameObject.GetComponent<UnitBase>();
+		/*UnitBase unit = other.gameObject.GetComponent<UnitBase>();
 
 		if (unit == null)
 			return;
 		
-		unit.OnPlayerEnter(this, currentShape);
+		unit.OnPlayerEnter(this, currentShape);*/
+		VillagerController unit = other.gameObject.GetComponent<VillagerController>();
 
+		if (unit != null)
+		{
+			unit.OnPlayerTrigger(this, currentShape);
+		}
 	}
 }

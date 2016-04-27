@@ -3,17 +3,21 @@ using System.Collections;
 
 namespace SecondDoorStudio.HotF.StateMachines
 {
-	public class VillagerInitState : UnitState {
-		
-		// Use this for initialization
-		void Start () {
-			
+	public class VillagerInitState : VillagerState {
+		public override void Enter ()
+		{
+			base.Enter ();
+
+			currentAction = Init();
 		}
-		
-		// Update is called once per frame
-		void Update () {
-			
+
+		IEnumerator Init ()
+		{
+			yield return null;
+
+			owner.ChangeState<WanderState>();
 		}
+
 	}
 	
 }

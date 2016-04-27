@@ -126,7 +126,7 @@ public class EntityManager : MonoBehaviour {
 
 		int villagerCount = 0;
 
-		foreach(UnitBase villager in villagers)
+		/*foreach(UnitBase villager in villagers)
 		{
 			if (villager.GetIsInSanctuary())
 				villagerCount ++;
@@ -135,7 +135,7 @@ public class EntityManager : MonoBehaviour {
 		safeVillagers = villagerCount;
 
 		if (safeVillagers == totalVillagers)
-			sceneLoader.OnCredits();
+			sceneLoader.OnCredits();*/
 	}
 
 	Vector3 GetRandomPosition(float height)

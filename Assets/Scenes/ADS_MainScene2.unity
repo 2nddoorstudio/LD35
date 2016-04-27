@@ -129,6 +129,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 642507176cafa4c12b7a28a6274a9c31, type: 2}
+    - target: {fileID: 100752, guid: 24868f5c928ac4a3ab31ac7be55e33c3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24868f5c928ac4a3ab31ac7be55e33c3, type: 3}
   m_IsPrefabParent: 0
@@ -2053,9 +2057,9 @@ MonoBehaviour:
   areaWidth: 800
   areaHeight: 800
   excludeZone: 25
-  villagerAPrefab: {fileID: 148224, guid: ebde939c46f67454da2200a9ea667d4a, type: 2}
+  villagerAPrefab: {fileID: 173940, guid: 2c99f287b0298f540b44e077fc66922f, type: 2}
   villagerANumber: 20
-  villagerBPrefab: {fileID: 108918, guid: e258d62812236694e833e3ad261b641d, type: 2}
+  villagerBPrefab: {fileID: 130134, guid: cfd69254d17fef844bcfd41d8f927751, type: 2}
   villagerBNumber: 20
   enemyPrefab: {fileID: 144728, guid: 18b0d2284b4e50946b61c7efa8599e62, type: 2}
   enemyNumber: 10
@@ -2464,6 +2468,7 @@ MonoBehaviour:
   s_entityName: 
   b_paused: 0
   obj_gameManager: {fileID: 0}
+  behaviourMode: 0
   damageMultiplier: 0
   druidPrefab: {fileID: 0}
   bearPrefab: {fileID: 0}
@@ -2620,6 +2625,7 @@ MonoBehaviour:
   s_entityName: 
   b_paused: 0
   obj_gameManager: {fileID: 0}
+  behaviourMode: 0
   damageMultiplier: 1
   druidPrefab: {fileID: 1853214367}
   bearPrefab: {fileID: 1317776329}
