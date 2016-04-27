@@ -1,15 +1,35 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class State : MonoBehaviour {
+namespace SecondDoorStudio.HotF.StateMachines
+{
+	public abstract class State : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
+		public virtual void Enter()
+		{
+			AddListeners();
+		}
+		
+		public virtual void Exit()
+		{
+			RemoveListeners();
+		}
+		
+		public virtual void OnDestroy()
+		{
+			RemoveListeners();
+		}
+		
+		protected virtual void AddListeners()
+		{
+			
+		}
+		
+		protected virtual void RemoveListeners()
+		{
+			
+		}
+		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }
