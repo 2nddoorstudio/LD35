@@ -8,6 +8,11 @@ namespace SecondDoorStudio.HotF.StateMachines
 		[SerializeField]
 		float speed = 10.0f;
 
+		[SerializeField]
+		float minFleeDuration = 3.0f;
+		[SerializeField]
+		float maxFleeDuration = 5.0f;
+
 		public override void Enter ()
 		{
 			base.Enter ();
@@ -16,16 +21,8 @@ namespace SecondDoorStudio.HotF.StateMachines
 
 		IEnumerator FleeCoroutine()
 		{
-
-
 			animator.SetFloat("AnimSpeed", 1.0f);
 			nav.speed = speed;
-			//TODO: this need to be time-based, if the villager can't reach the destination they'll get stuck. Should be like sanctuary but away
-
-
-			// Original, time-based flee system
-			//		float startingTime = Time.time;
-			//		float timeToFlee = startingTime + Random.Range(1.0f, 3.0f);
 
 			RotateToward(target.transform.position);
 			//		RotateAngle(180.0f);
@@ -38,12 +35,13 @@ namespace SecondDoorStudio.HotF.StateMachines
 				nav.Resume();
 			}
 
-			float distance = Vector3.Distance(transform.position, nav.destination);
+			float fleeDuration = Random.Range(minFleeDuration, maxFleeDuration);
 
-			while (distance > 1f) {
-				distance = Vector3.Distance(transform.position, nav.destination);
-				yield return new WaitForSeconds(0.1f);
-			}
+
+			yield return new WaitForSeconds(fleeDuration);
+
+			nav.Stop();
+			animator.SetFloat("AnimSpeed", 0.0f);
 
 			owner.ChangeState<WanderState>();
 		}
