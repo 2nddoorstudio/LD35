@@ -110,7 +110,7 @@ public class EntityManager : MonoBehaviour {
 				go.transform.position = GetRandomPosition(0.0f);
 
 				RaycastHit hit;
-				if(Physics.Raycast((go.transform.position + new Vector3(0,50f,0)),Vector3.down, out hit,150f)){
+				if(Physics.Raycast((go.transform.position + new Vector3(0,50f,0)),Vector3.down, out hit,150f, Globals.GroundLayerMask)){
 					go.transform.position = hit.point;
 				}
 
