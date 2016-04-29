@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0, g: 0.23466839, b: 0.7352941, a: 1}
+  m_AmbientSkyColor: {r: 0.3512229, g: 0.20934257, b: 0.64705884, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -2140,8 +2140,8 @@ MonoBehaviour:
   enemyPrefab: {fileID: 144728, guid: 18b0d2284b4e50946b61c7efa8599e62, type: 2}
   enemyNumber: 10
   terrainPrefabs:
-  - {fileID: 188168, guid: 6a88c52f65f84496793f1e981bd35fbd, type: 2}
-  - {fileID: 170218, guid: 1d0c2084c55ac4f5ca929b543237e390, type: 2}
+  - {fileID: 112934, guid: e3dd6f077d06c4bc89c5f5bf81267032, type: 2}
+  - {fileID: 155834, guid: 860f6f0d1af20415cb246e3c484cfad2, type: 2}
   terrainCount: 90010000c8000000
 --- !u!1 &1173824304
 GameObject:
