@@ -6,11 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Terrain1
-  m_Shader: {fileID: 4800000, guid: 9107405be269d734ca5f998d0077cd1d, type: 3}
+  m_Name: ForestShadeProjector
+  m_Shader: {fileID: 4800000, guid: 4af7d8c018ae043b595ccde8584eba09, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -38,95 +38,25 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _EmissionMap
+          name: _ShadowTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 43c556cb22114c641b1d3bde23849f7d, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _FalloffTex
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Layer0
+          name: _EmissionMap
         second:
-          m_Texture: {fileID: 2800000, guid: 3506e6a502362f84388703b5f76728c0, type: 3}
-          m_Scale: {x: 80, y: 80}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Layer1
-        second:
-          m_Texture: {fileID: 2800000, guid: 86258ba45709877468959e04831fd9b1, type: 3}
-          m_Scale: {x: 80, y: 80}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Layer1Height
-        second:
-          m_Texture: {fileID: 2800000, guid: febd831042999b54f9f37646070ff112, type: 3}
-          m_Scale: {x: 80, y: 80}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Layer2
-        second:
-          m_Texture: {fileID: 2800000, guid: 3506e6a502362f84388703b5f76728c0, type: 3}
-          m_Scale: {x: 80, y: 80}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Layer2Height
-        second:
-          m_Texture: {fileID: 2800000, guid: febd831042999b54f9f37646070ff112, type: 3}
-          m_Scale: {x: 80, y: 80}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Layer3
-        second:
-          m_Texture: {fileID: 2800000, guid: e6017134fa7063346a1d97ef07bf0a4a, type: 3}
-          m_Scale: {x: 80, y: 80}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Layer3Height
-        second:
-          m_Texture: {fileID: 2800000, guid: febd831042999b54f9f37646070ff112, type: 3}
-          m_Scale: {x: 80, y: 80}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Layer4
-        second:
-          m_Texture: {fileID: 2800000, guid: 99e4d9436651b6b4580b9c5157cd55b8, type: 3}
-          m_Scale: {x: 80, y: 80}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Layer4Height
-        second:
-          m_Texture: {fileID: 2800000, guid: febd831042999b54f9f37646070ff112, type: 3}
-          m_Scale: {x: 80, y: 80}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _VertexColor
-        second:
-          m_Texture: {fileID: 2800000, guid: 99e35d22b5e245147afb17263b01b64c, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Shadows1
-        second:
-          m_Texture: {fileID: 2800000, guid: 43c556cb22114c641b1d3bde23849f7d, type: 3}
-          m_Scale: {x: 8, y: 8}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Shadows2
-        second:
-          m_Texture: {fileID: 2800000, guid: b4029d9fd8bf8b34fbcfad7f5a785918, type: 3}
-          m_Scale: {x: 2, y: 2}
-          m_Offset: {x: 1, y: 0}
       data:
         first:
           name: _ParallaxMap
@@ -177,28 +107,8 @@ Material:
         second: 0.5
       data:
         first:
-          name: _Layer1Blend
-        second: 0
-      data:
-        first:
-          name: _Layer2Blend
-        second: 0
-      data:
-        first:
-          name: _Layer3Blend
-        second: 0.064
-      data:
-        first:
-          name: _Layer4Blend
+          name: _Attenuation
         second: 1
-      data:
-        first:
-          name: _node_9478
-        second: 0
-      data:
-        first:
-          name: _Detail
-        second: 0
       data:
         first:
           name: _Parallax
