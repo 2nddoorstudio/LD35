@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.3512229, g: 0.20934257, b: 0.64705884, a: 1}
+  m_AmbientSkyColor: {r: 0.19607843, g: 0.3882353, b: 0.5803922, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -692,7 +692,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22419406, guid: 96d300001bac14143b12e6096477f424, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 22419406, guid: 96d300001bac14143b12e6096477f424, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -1205,7 +1205,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 494464, guid: eeb4daaa5c3144b629c1a4ce1889bb7c, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11409748, guid: eeb4daaa5c3144b629c1a4ce1889bb7c, type: 2}
       propertyPath: player
@@ -3020,7 +3020,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 405762, guid: c97e26f2f4250ca4f9e6cb9ea9ca06f5, type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 123564, guid: c97e26f2f4250ca4f9e6cb9ea9ca06f5, type: 2}
       propertyPath: m_StaticEditorFlags
@@ -3066,7 +3066,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 459958, guid: b1e0a7e7578854b29a4bba874d7a6456, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 491598, guid: b1e0a7e7578854b29a4bba874d7a6456, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3448,7 +3448,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 497676, guid: 896a3b8f1c3176342b908599c59cd0d4, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 11425468, guid: 896a3b8f1c3176342b908599c59cd0d4, type: 2}
       propertyPath: audioFade
