@@ -20,11 +20,11 @@ TagManager:
   - 
   - 
   - Ground
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Obstacles
+  - Items
+  - Allies
+  - Enemies
+  - Projectiles
   - 
   - 
   - 
